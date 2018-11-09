@@ -1,9 +1,30 @@
-$primary: #EFEFEF
-$secondary: #EFEFEF
-$accent: #EFEFEF
-$text-primary: #EFEFEF
-$text-secondary: #EFEFEF
-$link: #EFEFEF
+$primary: #00C851 !important
+$secondary: #ffbb33 !important
+$accent: #33b5e5 !important
+$text-primary: #3E3E3E !important
+$text-secondary: #000 !important
 
+*
+    transition-duration: 0.4s
+    &:hover
+        transition-duration: 0.4s
+
+
+h1, h2, h3
+    color: $primary
+
+a
+    color: $primary
+    text-decoration: underline
+    &:hover
+        opacity: 0.7
+
+p
+    color: $text-primary
+
+
+.navbar
+    .nav-link
+        text-decoration: none
 
 .footer
