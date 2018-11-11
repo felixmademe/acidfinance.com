@@ -15,13 +15,21 @@ Route::get( '/', function () {
     return view( 'index' );
 });
 
-Route::get( '/about', function () {
+Route::get( 'what-is-simple-finance', function () {
     return view( 'about' );
-});
+})->name( 'about' );
 
-Route::get( '/how-to-use', function () {
+Route::get( 'how-to-use', function ()
+{
     return view( 'guide' );
-});
+
+})->name( 'guide' );
+
+Route::get( 'privacy-policy', function ()
+{
+    return view( 'privacy' );
+
+})->name( 'privacy' );
 
 Auth::routes();
 
