@@ -17,7 +17,7 @@
     <link rel="icon" href="{{ asset( '/img/icon.ico' ) }}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
         <a class="navbar-brand" href="/">
         	<img src="{{ asset( '/img/logo.svg' ) }}" alt="">
         </a>
@@ -29,14 +29,14 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">What is {{ config('app.name', 'Simple Finance') }}?</a>
+                    <a class="nav-link" href="{{ route( 'about' ) }}">What is {{ config('app.name', 'Simple Finance') }}?</a>
                 </li>
 				<li class="nav-item">
-					<a class="nav-link" href="/how-to-use">How to use</a>
+					<a class="nav-link" href="{{ route( 'guide' ) }}">How to use</a>
 				</li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -72,11 +72,54 @@
             </ul>
         </div>
     </nav>
-    <div class="container py-5">
-        @yield( 'content' )
-    </div>
-    <footer class="footer">
 
+    <main>
+        <div class="container mt-5 py-5">
+            @yield( 'content' )
+        </div>
+    </main>
+
+    <footer class="footer mb-3">
+        <div class="container-fluid">
+            <hr>
+            <div class="row p-4">
+                <div class="col-md-3 d-none d-md-block">
+                    <img src="{{ asset( '/img/logo.svg' ) }}" alt="">
+                </div>
+                <div class="col-md-3">
+                    <h4>Simple Finance</h4>
+                    <p>
+                        Karlstad
+                        <br>
+                        Sweden
+                        <br>
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Useful Links</h4>
+                    <p>
+                        <a href="{{ route( 'about' ) }}">What is {{ config('app.name', 'Simple Finance') }}?</a>
+                        <br>
+                        <a href="{{ route( 'guide' ) }}">How to use</a>
+                        <br>
+                        <a href="{{ route( 'privacy' ) }}">Privacy Policy</a>
+                        <br>
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Contact</h4>
+                    <p>
+                        hello@simplefinance.com
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <small>
+                    by <a href="https://felixmade.me">Felix Wetell</a>
+                </small>
+            </div>
+        </div>
     </footer>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
