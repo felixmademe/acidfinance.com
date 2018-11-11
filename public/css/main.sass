@@ -3,6 +3,7 @@ $secondary: #ffbb33 !important
 $accent: #33b5e5 !important
 $text-primary: #3E3E3E !important
 $text-secondary: #000 !important
+$white: #FFF
 
 *
     transition-duration: 0.4s
@@ -15,12 +16,16 @@ h1, h2, h3
 
 a
     color: $primary
-    text-decoration: underline
+    text-decoration: none
     &:hover
-        opacity: 0.7
+        color: $secondary
 
 p
     color: $text-primary
+
+small
+    color: $text-primary
+    opacity: 0.7
 
 button
     &[type="submit"]
@@ -47,11 +52,15 @@ input
     transform: translateX(-50%)
 
 .navbar
+    background-color: $white
     .navbar-brand
         img
             width: 45px
+            &:hover
+                filter: blur(1px)
 
-    .nav-link
-        text-decoration: none
+    .active
+        .nav-link
+            color: $text-primary
 
 .footer
