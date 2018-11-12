@@ -18,28 +18,16 @@
 
                 <div class="form-group row">
                     <div class="col-md-8 offset-md-2">
-                        <input id="firstName" type="text" placeholder="First Name" class="form-control{{ $errors->has('firstName') ? ' is-invalid' : '' }}" name="firstName" value="{{ old('firstName') }}" required autofocus>
+                        <input id="username" type="text" placeholder="Username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
 
-                        @if ($errors->has('firstName'))
+                        @if ($errors->has('username'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('firstName') }}</strong>
+                                <strong>{{ $errors->first('username') }}</strong>
                             </span>
                         @endif
                     </div>
                 </div>
-
-                <div class="form-group row">
-                    <div class="col-md-8 offset-md-2">
-                        <input id="lastName" type="text" placeholder="Last Name" class="form-control{{ $errors->has('lastName') ? ' is-invalid' : '' }}" name="lastName" value="{{ old('lastName') }}" required autofocus>
-
-                        @if ($errors->has('lastName'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('lastName') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
+                
                 <div class="form-group row">
                     <div class="col-md-8 offset-md-2">
                         <input id="email" type="email" placeholder="E-Mail Address" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
