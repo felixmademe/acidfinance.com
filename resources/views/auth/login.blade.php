@@ -13,7 +13,7 @@
                     {{ __( 'New user? Register here' ) }}
                 </a>
             </div>
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route( 'login' ) }}">
                 @csrf
 
                 <div class="form-group row">
