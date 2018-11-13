@@ -33,9 +33,9 @@ Route::get( 'privacy-policy', function ()
     return view( 'privacy' );
 })->name( 'privacy' );
 
-Route::get('profile', function ()
+Route::get( 'profile', function ()
 {
     return view( 'profile' );
-})->middleware( 'auth' );
+})->middleware( 'auth' )->name( 'profile' );
 
 Route::get('/home', 'HomeController@index')->name('home');
