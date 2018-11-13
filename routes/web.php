@@ -13,10 +13,10 @@
 
 Auth::routes();
 
-Route::get( 'index', function ()
+Route::get( '/', function ()
 {
     return view( 'index' );
-})->name( 'home' );
+});
 
 Route::get( 'what-is-simple-finance', function ()
 {

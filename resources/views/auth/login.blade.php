@@ -18,11 +18,11 @@
 
                 <div class="form-group row">
                     <div class="col-md-8 offset-md-2">
-                        <input id="email" type="text" placeholder="Username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old( 'username' ) }}" required autofocus>
+                        <input id="email" type="text" placeholder="E-Mail Addres" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old( 'email' ) }}" required autofocus>
 
-                        @if ($errors->has('username'))
+                        @if ($errors->has('email'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first( 'username' ) }}</strong>
+                                <strong>{{ $errors->first( 'email' ) }}</strong>
                             </span>
                         @endif
                     </div>
