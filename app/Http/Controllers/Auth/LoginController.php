@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\HTTP\Request;
 
@@ -26,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = 'home';
 
     /**
      * Create a new controller instance.
@@ -35,6 +36,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth');
         $this->middleware('guest')->except('logout');
     }
 
@@ -43,18 +45,9 @@ class LoginController extends Controller
         $this->validate($request,
         [
             'username' => 'required|max:255',
-            'password' => 'required|confirmed',
+            'password' => 'required',
         ]);
 
-        if (Auth::attempt(['username' => $username, 'password' => $password]))
-        {
-            // Success
-            return redirect()->intended('/panel');
-        }
-        else
-        {
-            // Go back on error (or do what you want)
-            return redirect()->back();
-        }
+         if ( Auth::attempt( [ 'username' => $username, 'password' => $password ] ) );
     }
 }
