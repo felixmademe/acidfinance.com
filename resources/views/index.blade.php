@@ -11,7 +11,7 @@
             <h1>Simplifying finance</h1>
             <p>For me, for you, for everyone.</p>
         </div>
-        {{-- <br><br><br>
+        <br><br><br>
         <div class="row">
             <div class="col-12">
                 <div class="col-4">
@@ -34,6 +34,6 @@
                     <p></p>
                 </div>
             </div>
-        </div> --}}
+        </div>
     @endauth
 @endsection
