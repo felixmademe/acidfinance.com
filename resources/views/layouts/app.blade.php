@@ -18,7 +18,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
-        <a class="navbar-brand" href="{{ route( 'home' ) }}">
+        <a class="navbar-brand" href="/">
         	<img src="{{ asset( '/img/logo.svg' ) }}" alt="">
         </a>
         <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route( 'home' ) }}">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route( 'about' ) }}">What is {{ config('app.name', 'Simple Finance') }}?</a>

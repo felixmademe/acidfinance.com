@@ -4,7 +4,7 @@
 
     @auth
         <h1>
-            {{ Auth::user()->username }}
+            {{ Auth::user()->name }}
         </h1>
     @else
         <div class="jumbotron">
