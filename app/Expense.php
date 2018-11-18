@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Expense extends Transaction
 {
     //
+
+    protected $table = 'expenses';
 }
