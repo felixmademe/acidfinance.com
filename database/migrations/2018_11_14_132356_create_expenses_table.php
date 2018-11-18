@@ -18,6 +18,7 @@ class CreateExpensesTable extends Migration
             $table->string('name');
             $table->integer('amount');
             $table->boolean('monthly');
+            $table->integer('catergory_id');
             $table->timestamps();
         });
     }
