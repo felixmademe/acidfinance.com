@@ -43,3 +43,23 @@ Route::name( 'user.' )->group(function ()
 
     Route::patch('edit', 'UserController@edit')->name( 'edit' );
 });
+
+Route::name( 'income.' )->group(function ()
+{
+    Route::get( 'income', function ()
+    {
+        return view( 'income.index' );
+    })->name( 'index' )->middleware( 'auth' );
+
+    Route::patch('edit', 'IncomeController@edit')->name( 'edit' );
+});
+
+Route::name( 'expense.' )->group(function ()
+{
+    Route::get( 'expense', function ()
+    {
+        return view( 'expense.index' );
+    })->name( 'index' )->middleware( 'auth' );
+
+    Route::patch('edit', 'ExpenseController@edit')->name( 'edit' );
+});
