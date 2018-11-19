@@ -10,7 +10,7 @@
                 <h1>Expenses</h1>
             </div>
             <hr>
-
+            {{-- TODO: if-statment to check if there are any expense objects --}}
         </div>
     </div>
 
