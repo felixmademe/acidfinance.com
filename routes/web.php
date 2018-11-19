@@ -33,9 +33,13 @@ Route::get( 'privacy-policy', function ()
     return view( 'privacy' );
 })->name( 'privacy' );
 
-Route::get( 'profile', function ()
-{
-    return view( 'profile' );
-})->middleware( 'auth' )->name( 'profile' );
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::name( 'user.' )->group(function ()
+{
+    Route::get( 'profile', function ()
+    {
+        return view( 'user.index' );
+    })->name( 'profile' );
+
+    Route::patch('edit', 'UserController@edit')->name( 'edit' );
+});
