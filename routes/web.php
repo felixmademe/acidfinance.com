@@ -39,7 +39,7 @@ Route::name( 'user.' )->group(function ()
     Route::get( 'profile', function ()
     {
         return view( 'user.index' );
-    })->name( 'profile' );
+    })->name( 'profile' )->middleware( 'auth' );
 
     Route::patch('edit', 'UserController@edit')->name( 'edit' );
 });
