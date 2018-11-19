@@ -18,6 +18,7 @@ class CreateIncomesTable extends Migration
             $table->string('name');
             $table->integer('amount');
             $table->boolean('monthly');
+            $table->integer('user_id');
             $table->integer('catergory_id');
             $table->timestamps();
         });

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\User;
+use App\Expense;
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
@@ -13,7 +16,7 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
     }
 
     /**
