@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="363px" height="198px" viewBox="0 0 363 198" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>total</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-720.000000, -317.000000)">
+            <g id="total" transform="translate(720.000000, 317.000000)">
+                <rect id="Rectangle" fill="#3E3E3E" fill-rule="nonzero" x="0" y="0" width="363" height="198"></rect>
+                <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero" cx="181.5" cy="99" r="19.8"></circle>
+                <g id="flaticon1542651855-svg" transform="translate(170.280000, 94.380000)" fill="#3E3E3E">
+                    <path d="M1.38372787,9.32785574 L21.6791607,9.32785574 C22.4435434,9.32785574 23.0630779,8.70851066 23.0630779,7.94374918 C23.0630779,7.1789877 22.4437328,6.55983197 21.6791607,6.55983197 L1.38372787,6.55983197 C0.619345082,6.56002131 0,7.17917705 0,7.94374918 C0,8.70832131 0.619345082,9.32785574 1.38372787,9.32785574 Z" id="Path"></path>
+                    <path d="M1.38372787,2.87008033 L21.6791607,2.87008033 C22.4435434,2.87008033 23.0630779,2.2505459 23.0630779,1.48616311 C23.0630779,0.721780328 22.4437328,0.102435246 21.6791607,0.102435246 L1.38372787,0.102435246 C0.619345082,0.102435246 0,0.721780328 0,1.48616311 C0,2.2505459 0.619345082,2.87008033 1.38372787,2.87008033 Z" id="Path"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

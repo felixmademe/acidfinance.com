@@ -1,9 +1,16 @@
+//
+// Variables
+//
 $primary: #00C851 !important
 $secondary: #ffbb33 !important
 $accent: #33b5e5 !important
 $text-primary: #3E3E3E !important
 $text-secondary: #343a40 !important
-$white: #FFF
+$white: #FFF !important
+
+//
+// Universal elements
+//
 
 *
     transition-duration: 0.4s
@@ -38,6 +45,21 @@ input
         -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 200, 81, 0.6)
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 200, 81, 0.6)
 
+//
+// Universal classes
+//
+
+.green-text
+    color: $primary
+
+.red-text
+    color: #F44336 !important
+
+.btn-orange
+    background-color: $secondary
+    &:hover
+        color: $white
+
 .form-control
     &:focus
         border-color: $primary
@@ -46,10 +68,14 @@ input
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 200, 81, 0.6)
 
 @media (min-width: 768px)
-  .navbar-brand
-    position: absolute
-    left: 50%
-    transform: translateX(-50%)
+    .navbar-brand
+        position: absolute
+        left: 50%
+        transform: translateX(-50%)
+
+//
+// Layout
+//
 
 .navbar
     background-color: $white
@@ -64,3 +90,7 @@ input
             color: $text-primary
 
 .footer
+
+//
+//
+//
