@@ -33,6 +33,10 @@ Route::get( 'privacy-policy', function ()
     return view( 'privacy' );
 })->name( 'privacy' );
 
+Route::get( 'previous-months', function ()
+{
+    return view( 'previous' );
+})->name( 'previous' );
 
 Route::name( 'user.' )->group(function ()
 {

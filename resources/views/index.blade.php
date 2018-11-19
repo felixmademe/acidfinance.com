@@ -67,6 +67,11 @@
                     </div>
                 </div>
             </div>
+            <br><hr><br>
+            <div class="text-center">
+                <p>Want to see past months? Click the button below to find out</p>
+                <a href="{{ route( 'previous' ) }}" class="btn btn-blue">Previous months</a>
+            </div>
         </div>
     </div>
 @else
