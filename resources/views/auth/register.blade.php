@@ -27,7 +27,7 @@
                         @endif
                     </div>
                 </div>
-                
+
                 <div class="form-group row">
                     <div class="col-md-8 offset-md-2">
                         <input id="email" type="email" placeholder="E-Mail Address" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
