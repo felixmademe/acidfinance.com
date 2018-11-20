@@ -3,13 +3,19 @@
 @section( 'content' )
 
 @auth
-
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="text-center">
                 <h1>Income</h1>
             </div>
             <hr>
+
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
+
             @if( !empty( $incomes ) )
                 <table id="incomedt" class="table table-striped" cellspacing="0" width="100%">
                     <thead>
@@ -35,15 +41,15 @@
                                 </td>
                                 <td class="green-text">{{ $income->amount }}kr</td>
                                 <td class="text-center">
-                                    <a href="{{ route( 'income.index' ) }}" class="blue-text">Edit</a>
+                                    <a href="{{ route( 'income.{id}.edit', [ 'id' => $income->id ] ) }}" class="blue-text">Edit</a>
                                     /
-                                    <a href="{{ route( 'income.index' ) }}" class="red-text">Remove</a>
+                                    <a href="{{ route( 'income.destroy', [ 'destroy' => $income->id ] ) }}" class="red-text">Remove</a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <div class="text-center">
+                    <div class="text-center">
                     <p>Missing an income? Click the button below to add more</p>
                     <form  method="POST" action="{{ route( 'income.create' ) }}">
                         @csrf
