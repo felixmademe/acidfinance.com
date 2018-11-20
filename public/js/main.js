@@ -1,4 +1,7 @@
-$(function ()
+$( document ).ready( function ()
 {
-  $( '[data-toggle="tooltip"]' ).tooltip()
-})
+    $( '#incomedt').DataTable();
+    $( '#expensedt').DataTable();
+    $( '.dataTables_length' ).addClass( 'bs-select' );
+    $( '[data-toggle="tooltip"]' ).tooltip()
+});
