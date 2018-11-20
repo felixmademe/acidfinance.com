@@ -38,7 +38,7 @@ Route::get( 'previous-months', function ()
     return view( 'previous' );
 })->name( 'previous' );
 
-Route::name( 'user.' )->group(function ()
+Route::name( 'user.' )->group( function ()
 {
     Route::get( 'profile', function ()
     {
@@ -48,17 +48,19 @@ Route::name( 'user.' )->group(function ()
     Route::patch('edit', 'UserController@edit')->name( 'edit' );
 });
 
-Route::name( 'income.' )->group(function ()
+Route::name( 'income.' )->group( function ()
 {
-    Route::get( 'income', function ()
-    {
-        return view( 'income.index' );
-    })->name( 'index' )->middleware( 'auth' );
+    // Route::get( 'income', function ()
+    // {
+    //     return view( 'income.index' );
+    // })->name( 'index' )->middleware( 'auth' );
+
+    Route::get( 'income', 'IncomeController@index' )->name( 'index' )->middleware( 'auth' );
 
     Route::patch('edit', 'IncomeController@edit')->name( 'edit' );
 });
 
-Route::name( 'expense.' )->group(function ()
+Route::name( 'expense.' )->group( function ()
 {
     Route::get( 'expense', function ()
     {
