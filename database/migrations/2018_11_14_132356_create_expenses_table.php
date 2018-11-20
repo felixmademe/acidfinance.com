@@ -19,7 +19,7 @@ class CreateExpensesTable extends Migration
             $table->integer('amount');
             $table->boolean('monthly');
             $table->integer('user_id');
-            $table->integer('catergory_id');
+            $table->integer('category_id');
             $table->timestamps();
         });
     }

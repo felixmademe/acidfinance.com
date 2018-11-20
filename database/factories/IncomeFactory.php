@@ -8,6 +8,6 @@ $factory->define(App\Income::class, function (Faker $faker) {
         'amount' => $faker->numberBetween( 100, 9000 ),
         'monthly' => $faker->boolean,
         'user_id' => 1,
-        'catergory_id' => $faker->numberBetween( 1, 10 ),
+        'category_id' => $faker->numberBetween( 1, 10 ),
     ];
 });
