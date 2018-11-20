@@ -64,7 +64,6 @@ class UserController extends Controller
         ]);
 
         $user = \Auth::user();
-
         $user->username = $request->input( 'username' );
         $user->email = $request->input( 'email' );
 
