@@ -50,13 +50,8 @@ Route::name( 'user.' )->group( function ()
 
 Route::name( 'income.' )->group( function ()
 {
-    // Route::get( 'income', function ()
-    // {
-    //     return view( 'income.index' );
-    // })->name( 'index' )->middleware( 'auth' );
-
     Route::get( 'income', 'IncomeController@index' )->name( 'index' )->middleware( 'auth' );
-
+    Route::post( 'create', 'IncomeController@create' )->name( 'create' );
     Route::patch('edit', 'IncomeController@edit')->name( 'edit' );
 });
 
