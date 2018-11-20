@@ -10,6 +10,10 @@
                 <h1>Income</h1>
             </div>
             <hr>
+            @foreach ($incomes as $income)
+                <p>{{ $income->name }}</p>
+                <br>
+            @endforeach
             {{-- TODO: if-statment to check if there are any expense objects --}}
         </div>
     </div>
