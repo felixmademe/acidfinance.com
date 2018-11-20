@@ -1,80 +1,70 @@
-@extends('layouts.app')
-
+@extends( 'layouts.app' )
 @section( 'content' )
-
 @auth
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="text-center">
-                <h1>
-                    {{ date( 'F' ) }}
-                </h1>
-            </div>
-            <hr><br>
+    @section( 'title', "{{ date( 'F' ) }}" )
+    <div class="card">
+        <img class="card-img-top" src="{{ asset( '/img/total.svg' ) }}" alt="Equal icon in cirlce on a one colour background">
+        <div class="card-body text-center">
+            <h4>Total</h4>
+            {{-- TODO: calculate money (easy) --}}
+            {{-- TODO: if-statment, green if money left, red if money in minus --}}
+            <p class="sum">20213kr left this month</p>
+        </div>
+    </div>
+    <br><hr><br>
+    <div class="row">
+        <div class="col-md-6">
             <div class="card">
-                <img class="card-img-top" src="{{ asset( '/img/total.svg' ) }}" alt="Equal icon in cirlce on a one colour background">
-                <div class="card-body text-center">
-                    <h4>Total</h4>
-                    {{-- TODO: calculate money (easy) --}}
-                    {{-- TODO: if-statment, green if money left, red if money in minus --}}
-                    <p class="sum">20213kr left this month</p>
+                <img class="card-img-top" src="{{ asset( '/img/income.svg' ) }}" alt="Plus icon in cirlce on a one colour background">
+                <div class="card-body">
+                    <h4 class="text-center">Income</h4>
+                    <hr>
+                    <ul class="list-group">
+                        {{-- TODO: Loop of incomes --}}
+                        {{-- TODO: Split for different categories --}}
+                        <li class="list-group-item border-0">
+                            Total - <span class="green-text">2310123 kr</span>
+                        </li>
+                        <li class="list-group-item border-0">
+                            Source - <span class="green-text">2000 kr</span>
+                        </li>
+                        <li class="list-group-item border-0">
+                            Source - <span class="green-text">2000 kr</span>
+                        </li>
+                    </ul>
+                    <a href="{{ route( 'income.index' ) }}" class="btn btn-orange">Edit</a>
                 </div>
             </div>
-            <br><hr><br>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <img class="card-img-top" src="{{ asset( '/img/income.svg' ) }}" alt="Plus icon in cirlce on a one colour background">
-                        <div class="card-body">
-                            <h4 class="text-center">Income</h4>
-                            <hr>
-                            <ul class="list-group">
-                                {{-- TODO: Loop of incomes --}}
-                                {{-- TODO: Split for different categories --}}
-                                <li class="list-group-item border-0">
-                                    Total - <span class="green-text">2310123 kr</span>
-                                </li>
-                                <li class="list-group-item border-0">
-                                    Source - <span class="green-text">2000 kr</span>
-                                </li>
-                                <li class="list-group-item border-0">
-                                    Source - <span class="green-text">2000 kr</span>
-                                </li>
-                            </ul>
-                            <a href="{{ route( 'income.index' ) }}" class="btn btn-orange">Edit</a>
-                        </div>
-                    </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <img class="card-img-top" src="{{ asset( '/img/expense.svg' ) }}" alt="Minus icon in cirlce on a one colour background">
+                <div class="card-body">
+                    <h4 class="text-center">Expense</h4>
+                    <hr>
+                    <ul class="list-group">
+                        {{-- TODO: Loop of expenses --}}
+                        {{-- TODO: Split for different categories --}}
+                        <li class="list-group-item border-0">
+                            Total - <span class="red-text">2310123 kr</span>
+                        </li>
+                        <li class="list-group-item border-0">
+                            Source - <span class="red-text">2000 kr</span>
+                        </li>
+                    </ul>
+                    <a href="{{ route( 'expense.index' ) }}" class="btn btn-orange">Edit</a>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <img class="card-img-top" src="{{ asset( '/img/expense.svg' ) }}" alt="Minus icon in cirlce on a one colour background">
-                        <div class="card-body">
-                            <h4 class="text-center">Expense</h4>
-                            <hr>
-                            <ul class="list-group">
-                                {{-- TODO: Loop of expenses --}}
-                                {{-- TODO: Split for different categories --}}
-                                <li class="list-group-item border-0">
-                                    Total - <span class="red-text">2310123 kr</span>
-                                </li>
-                                <li class="list-group-item border-0">
-                                    Source - <span class="red-text">2000 kr</span>
-                                </li>
-                            </ul>
-                            <a href="{{ route( 'expense.index' ) }}" class="btn btn-orange">Edit</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br><hr><br>
-            <div class="text-center">
-                <p>Want to see past months? Click the button below to find out</p>
-                <a href="{{ route( 'previous' ) }}" class="btn btn-blue">Previous months</a>
             </div>
         </div>
     </div>
+    <br><hr><br>
+    <div class="text-center">
+        <p>Want to see past months? Click the button below to find out</p>
+        <a href="{{ route( 'previous' ) }}" class="btn btn-blue">Previous months</a>
+    </div>
 @else
+    @section( 'title', 'Start' )
     <div class="jumbotron">
         <h1>Simplifying finance</h1>
         <p>For me, for you, for everyone.</p>
@@ -105,5 +95,4 @@
     </div>
 
 @endauth
-
 @endsection

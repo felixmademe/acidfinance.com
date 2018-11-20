@@ -6,7 +6,7 @@
     <meta name="description" content="Simpl Financ helps you visualize your income and expenses">
     <meta name="author" content="Felix Wetell">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Simpl Financ') }}</title>
+    <title>{{ config('app.name', 'Simpl Financ') }} - @yield( 'title' )</title>
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -78,7 +78,15 @@
 
     <main>
         <div class="container mt-5 py-5">
-            @yield( 'content' )
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="text-center">
+                        <h1>@yield( 'title' )</h1>
+                    </div>
+                    <hr>
+                    @yield( 'content' )
+                </div>
+            </div>
         </div>
     </main>
 

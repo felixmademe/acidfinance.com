@@ -1,9 +1,5 @@
-@extends('layouts.app')
-
+@extends( 'layouts.app' )
+@section( 'title', '{{ $income->name }}' )
 @section( 'content' )
-
-    <div class="row justify-content-center">
-        
-    </div>
 
 @endsection
