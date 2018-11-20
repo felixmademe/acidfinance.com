@@ -6,7 +6,7 @@ use App\User;
 use App\Category;
 use Illuminate\Database\Eloquent\Model;
 
-class Expense extends Transaction
+class Expense extends Model
 {
     public function category()
     {

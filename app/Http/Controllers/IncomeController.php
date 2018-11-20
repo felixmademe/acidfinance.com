@@ -15,7 +15,9 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        //
+        dd(Auth::user()):
+        $incomes = Auth::user();
+        return view( 'index' )->with( 'name', $incomes );
     }
 
     /**
