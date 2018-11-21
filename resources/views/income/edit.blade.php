@@ -1,5 +1,5 @@
 @extends( 'layouts.app' )
-@section( 'title', '{{ $income->name }}' )
+@section( 'title', 'Income' )
 @section( 'content' )
 
 @endsection
