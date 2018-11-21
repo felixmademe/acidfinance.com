@@ -54,6 +54,7 @@ Route::name( 'income.' )->group( function ()
     Route::get( 'income/create', 'IncomeController@create' )->name( 'create' );
     Route::get( 'income/edit/{id}', 'IncomeController@edit' )->name( 'edit.{id}' );
     Route::post( 'income/remove/{id}', 'IncomeController@destroy' )->name( 'remove.{id}' );
+    Route::put( 'income/update/{id}', 'IncomeController@update' )->name( 'update.{id}' );
 });
 
 Route::name( 'expense.' )->group( function ()

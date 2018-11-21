@@ -98,7 +98,7 @@ class IncomeController extends Controller
     {
         $income = Income::find( $id );
 
-        return view( 'income.edit' );
+        return view( 'income.edit' )->with( 'income', $income );
     }
 
     /**
@@ -110,7 +110,25 @@ class IncomeController extends Controller
      */
     public function update( Request $request, $id )
     {
-        //
+        $request->validate( [
+            'user_id'     => 'required|integer',
+            'name'        => 'required|string',
+            'category_id' => 'integer',
+            'monthly'     => 'boolean',
+            'amount'      => 'integer',
+        ] );
+
+        if( Auth::user()->id == $request->user_id )
+        {
+            $income = Income::find( $id );
+            $income->name = $request->name;
+            $income->category_id = $request->category_id;
+            $income->monthly = $request->monthly;
+            $income->amount = $request->amount;
+            $income->save();
+
+            return redirect( 'income' )->with( 'success', [ $income->name, 'have been updated!' ]  );
+        }
     }
 
     /**
@@ -134,11 +152,5 @@ class IncomeController extends Controller
             return View::make( 'partials/flash-messages' );
         }
 
-    }
-
-    public function getIncomes()
-    {
-        $incomes = Income::get();
-        return $incomes;
     }
 }

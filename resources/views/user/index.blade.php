@@ -4,7 +4,7 @@
 
 @auth
 
-    <p>A password is required to change any setting in your profile,
+    <p class="text-center">A password is required to change any setting in your profile,
         it could be the current one or you could enter a new one</p>
 
     <form method="post" action="{{ route( 'user.edit' ) }}">
