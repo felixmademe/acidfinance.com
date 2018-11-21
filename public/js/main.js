@@ -1,7 +1,14 @@
 $( document ).ready( function ()
 {
-    $( '#incomedt').DataTable();
-    $( '#expensedt').DataTable();
-    $( '.dataTables_length' ).addClass( 'bs-select' );
+    $( '#incomedt').DataTable(
+        {
+            paging: true,
+            searching: false,
+        } );
+    $( '#expensedt').DataTable(
+        {
+            paging: true,
+            searching: false,
+        } );
     $( '[data-toggle="tooltip"]' ).tooltip()
-});
+} );
