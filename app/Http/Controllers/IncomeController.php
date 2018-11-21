@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
+use App\Income;
 use Illuminate\Http\Request;
 
 class IncomeController extends Controller
@@ -26,7 +27,10 @@ class IncomeController extends Controller
      */
     public function create()
     {
-        return redirect()->back()->with('message', 'Income added');
+        $income = new Income;
+        $income->user_id = Auth::user()->id;
+        $income->save();
+        return redirect()->back()->with('add', 'Income added');
     }
 
     /**
@@ -59,7 +63,9 @@ class IncomeController extends Controller
      */
     public function edit( $id )
     {
-        
+        $income = Income::find( $id );
+
+        return view( 'income.edit' );
     }
 
     /**
@@ -82,6 +88,8 @@ class IncomeController extends Controller
      */
     public function destroy( $id )
     {
-        //
+        $income = Income::find( $id );
+        $income->delete();
+        return redirect()->back()->with('remove',  "$income->name removed");
     }
 }
