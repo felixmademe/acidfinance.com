@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use View;
+
 use Auth;
 use App\User;
 use App\Expense;
@@ -16,7 +19,8 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        $expenses = Auth::user()->expenses;
+        return view( 'expense.index' )->with( 'expenses', $expenses );
     }
 
     /**
@@ -26,7 +30,40 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        $expense = new Expense;
+        $expense->name = 'Expense';
+        $expense->category_id = 0;
+        $expense->monthly = true;
+        $expense->amount = 0;
+        $expense->user_id = Auth::user()->id;
+        $expense->save();
+
+        if( count( Auth::user()->expenses ) > 1 )
+        {
+            Session::flash( 'success', "Expense added" );
+            $message = View::make( 'partials/flash-messages' );
+            $expenseView = View::make( 'partials/expense-row' )->with( 'expense', $expense );
+
+            return response()->json(
+            [
+                'message' => $message->render(),
+                'expenseView' => $expenseView->render(),
+            ], 200 );
+        }
+        else
+        {
+            Session::flash( 'success', "expense added" );
+            $message = View::make( 'partials/flash-messages' );
+            $expenseView = View::make( 'partials/expense-row' )->with( 'expense', $expense );
+
+            return response()->json(
+            [
+                'message' => $message->render(),
+                'expenseView' => $expenseView->render(),
+            ], 200 );
+        }
+
+        // return $reult = [ View::make( 'partials/flash-messages' ), $expense];
     }
 
     /**
@@ -35,7 +72,7 @@ class ExpenseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( Request $request )
     {
         //
     }
@@ -46,7 +83,7 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $id )
     {
         //
     }
@@ -57,9 +94,11 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $id )
     {
-        //
+        $expense = Expense::find( $id );
+
+        return view( 'expense.edit' )->with( 'expense', $expense );
     }
 
     /**
@@ -69,9 +108,27 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( Request $request, $id )
     {
-        //
+        $request->validate( [
+            'user_id'     => 'required|integer',
+            'name'        => 'required|string',
+            'category_id' => 'integer',
+            'monthly'     => 'boolean',
+            'amount'      => 'integer',
+        ] );
+
+        if( Auth::user()->id == $request->user_id )
+        {
+            $expense = Expense::find( $id );
+            $expense->name = $request->name;
+            $expense->category_id = $request->category_id;
+            $expense->monthly = $request->monthly;
+            $expense->amount = $request->amount;
+            $expense->save();
+
+            return redirect( 'expense' )->with( 'success', [ $expense->name, 'have been updated!' ]  );
+        }
     }
 
     /**
@@ -80,8 +137,20 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( $id  )
     {
-        //
+        $expense = expense::find( $id );
+        if( Auth::user()->id == $expense->user_id )
+        {
+            $expense->delete();
+            Session::flash( 'success', "$expense->name removed" );
+            return View::make( 'partials/flash-messages' );
+        }
+        else
+        {
+            Session::flash( 'error', "$expense->name is not owned current user" );
+            return View::make( 'partials/flash-messages' );
+        }
+
     }
 }

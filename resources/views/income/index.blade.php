@@ -32,7 +32,7 @@
                             <a href="{{ route( 'income.edit.{id}', [ 'id' => $income->id ] ) }}" class="blue-text">Edit </a>
                              /
                              {{-- action="{{ route( 'income.destroy', [ 'destroy' => $income->id ] ) }}" --}}
-                            <form class="income-form">
+                            <form class="transaction-form">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $income->id }}">
                                 <button type="submit" name="submit" class="no-btn p-0">

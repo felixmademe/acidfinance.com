@@ -59,10 +59,9 @@ Route::name( 'income.' )->group( function ()
 
 Route::name( 'expense.' )->group( function ()
 {
-    Route::get( 'expense', function ()
-    {
-        return view( 'expense.index' );
-    })->name( 'index' )->middleware( 'auth' );
-
-    Route::patch( 'edit', 'ExpenseController@edit' )->name( 'edit' );
+    Route::get( 'expense', 'ExpenseController@index' )->name( 'index' )->middleware( 'auth' );
+    Route::get( 'expense/create', 'ExpenseController@create' )->name( 'create' );
+    Route::get( 'expense/edit/{id}', 'ExpenseController@edit' )->name( 'edit.{id}' );
+    Route::post( 'expense/remove/{id}', 'ExpenseController@destroy' )->name( 'remove.{id}' );
+    Route::put( 'expense/update/{id}', 'ExpenseController@update' )->name( 'update.{id}' );
 });
