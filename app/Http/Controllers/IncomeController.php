@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use View;
+
 use Auth;
 use App\User;
 use App\Income;
@@ -28,9 +31,39 @@ class IncomeController extends Controller
     public function create()
     {
         $income = new Income;
+        $income->name = 'Income';
+        $income->category_id = 0;
+        $income->monthly = true;
+        $income->amount = 0;
         $income->user_id = Auth::user()->id;
         $income->save();
-        return redirect()->back()->with('add', 'Income added');
+
+        if( count( Auth::user()->incomes ) > 1 )
+        {
+            Session::flash( 'success', "Income added" );
+            $message = View::make( 'partials/flash-messages' );
+            $incomeView = View::make( 'partials/income-row' )->with( 'income', $income );
+
+            return response()->json(
+            [
+                'message' => $message->render(),
+                'incomeView' => $incomeView->render(),
+            ], 200 );
+        }
+        else
+        {
+            Session::flash( 'success', "Income added" );
+            $message = View::make( 'partials/flash-messages' );
+            $incomeView = View::make( 'partials/income-row' )->with( 'income', $income );
+
+            return response()->json(
+            [
+                'message' => $message->render(),
+                'incomeView' => $incomeView->render(),
+            ], 200 );
+        }
+
+        // return $reult = [ View::make( 'partials/flash-messages' ), $income];
     }
 
     /**
@@ -86,10 +119,26 @@ class IncomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id )
+    public function destroy( $id  )
     {
         $income = Income::find( $id );
-        $income->delete();
-        return redirect()->back()->with('remove',  "$income->name removed");
+        if( Auth::user()->id == $income->user_id )
+        {
+            $income->delete();
+            Session::flash( 'success', "$income->name removed" );
+            return View::make( 'partials/flash-messages' );
+        }
+        else
+        {
+            Session::flash( 'error', "$income->name is not owned current user" );
+            return View::make( 'partials/flash-messages' );
+        }
+
+    }
+
+    public function getIncomes()
+    {
+        $incomes = Income::get();
+        return $incomes;
     }
 }

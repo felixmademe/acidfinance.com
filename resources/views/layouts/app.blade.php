@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/css/dataTables.bootstrap4.css">
-<link rel="stylesheet" href="{{ asset( '/css/main.min.css' ) }}">
+    <link rel="stylesheet" href="{{ asset( '/css/main.min.css' ) }}">
     <link rel="icon" href="{{ asset( '/img/icon.ico' ) }}">
 </head>
 <body>
@@ -80,7 +80,7 @@
     <main>
         <div class="container mt-5 py-5">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div class="text-center">
                         <h1>@yield( 'title' )</h1>
                     </div>
@@ -140,6 +140,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="{{ asset('/js/main.js') }}"></script>
+    <script src="{{ asset('/js/main.js') }}"></script>
+    <script src="{{ asset('/js/ajax.js') }}"></script>
 </body>
 </html>

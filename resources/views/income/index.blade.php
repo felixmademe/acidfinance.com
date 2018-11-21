@@ -4,21 +4,20 @@
 @auth
 
     <h4 class="text-center">{{ date( 'F' ) }}</h4>
-
-    @if( !empty( $incomes ) )
-        <table id="incomedt" class="table table-striped" cellspacing="0" width="100%" data-page-length="10">
+    <div class="flash-message"></div>
+        <table id="incomedt" class="table table-striped" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th class="th-sm">Name</th>
                     <th class="th-sm">Category</th>
                     <th class="th-sm">Monthly</th>
                     <th class="th-sm">Amount</th>
-                    <th></th>
+                    <th class="th-sm">Settings</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($incomes as $income)
-                    <tr>
+                    <tr id="incomeRow{{ $income->id }}">
                         <td>{{ $income->name }}</td>
                         <td>{{ $income->category_id }}</td>
                         <td>
@@ -29,12 +28,13 @@
                             @endif
                         </td>
                         <td class="green-text">{{ $income->amount }}kr</td>
-                        <td class="text-center">
-                            <a href="{{ route( 'income.{id}.edit', [ 'id' => $income->id ] ) }}" class="blue-text">Edit </a>
+                        <td class="">
+                            <a href="{{ route( 'income.edit.{id}', [ 'id' => $income->id ] ) }}" class="blue-text">Edit </a>
                              /
-                            <form method="POST" class="transaction-form" action="{{ route( 'income.destroy', [ 'destroy' => $income->id ] ) }}">
+                             {{-- action="{{ route( 'income.destroy', [ 'destroy' => $income->id ] ) }}" --}}
+                            <form class="income-form">
                                 @csrf
-                                {{ method_field('DELETE') }}
+                                <input type="hidden" name="id" value="{{ $income->id }}">
                                 <button type="submit" name="submit" class="no-btn p-0">
                                     <a class="red-text">Remove</a>
                                 </button>
@@ -44,38 +44,21 @@
                 @endforeach
             </tbody>
         </table>
-        @if( session()->has( 'add' ) )
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session()->get( 'add' ) }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @elseif( session()->has( 'remove' ) )
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session()->get( 'remove' ) }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
         <hr>
         <div class="text-center">
             <p>Missing an income? Click the button below to add more</p>
-            <form method="GET" action="{{ route( 'income.create' ) }}">
+            <form class="addIncome">
                 @csrf
                 <button type="submit" name="addIncome" class="btn btn-primary">Add income</button>
             </form>
         </div>
-    @else
-        <div class="text-center">
+        {{-- <div class="text-center">
             <p>No incomes found, click the button below to start adding one.</p>
-            <form  method="POST" action="{{ route( 'income.create' ) }}">
+            <form id="addIncome" method="GET" action="{{ route( 'income.create' ) }}">
                 @csrf
                 <button type="submit" name="addIncome" class="btn btn-primary">Add income</button>
             </form>
-        </div>
-    @endif
+        </div> --}}
 
 @endauth
 @endsection

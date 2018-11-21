@@ -51,9 +51,9 @@ Route::name( 'user.' )->group( function ()
 Route::name( 'income.' )->group( function ()
 {
     Route::get( 'income', 'IncomeController@index' )->name( 'index' )->middleware( 'auth' );
-    Route::get( 'income.create', 'IncomeController@create' )->name( 'create' );
-    Route::get( 'income.{id}.edit', 'IncomeController@edit' )->name( '{id}.edit' );
-    Route::delete( 'income.{id}', 'IncomeController@destroy' )->name( 'destroy' );
+    Route::get( 'income/create', 'IncomeController@create' )->name( 'create' );
+    Route::get( 'income/edit/{id}', 'IncomeController@edit' )->name( 'edit.{id}' );
+    Route::post( 'income/remove/{id}', 'IncomeController@destroy' )->name( 'remove.{id}' );
 });
 
 Route::name( 'expense.' )->group( function ()
