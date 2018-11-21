@@ -45,14 +45,14 @@ Route::name( 'user.' )->group( function ()
         return view( 'user.index' );
     })->name( 'profile' )->middleware( 'auth' );
 
-    Route::patch( 'edit', 'UserController@edit' )->name( 'edit' );
+    Route::patch( 'user.edit', 'UserController@edit' )->name( 'edit' );
 });
 
 Route::name( 'income.' )->group( function ()
 {
     Route::get( 'income', 'IncomeController@index' )->name( 'index' )->middleware( 'auth' );
     Route::get( 'income.create', 'IncomeController@create' )->name( 'create' );
-    Route::patch( 'income.{id}.edit', 'IncomeController@edit' )->name( '{id}.edit' );
+    Route::get( 'income.{id}.edit', 'IncomeController@edit' )->name( '{id}.edit' );
     Route::delete( 'income.{id}', 'IncomeController@destroy' )->name( 'destroy' );
 });
 
