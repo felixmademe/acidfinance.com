@@ -12,7 +12,7 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
-                <input id="username" type="text" placeholder="Username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+                <input id="username" type="text" placeholder="Username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" required autofocus>
 
                 @if ($errors->has('username'))
                     <span class="invalid-feedback" role="alert">
@@ -24,7 +24,7 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
-                <input id="email" type="email" placeholder="E-Mail Address" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                <input id="email" type="email" placeholder="E-Mail Address" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required>
 
                 @if ($errors->has('email'))
                     <span class="invalid-feedback" role="alert">
