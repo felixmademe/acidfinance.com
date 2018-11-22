@@ -23,7 +23,14 @@
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
                 <label for="category" class="col-form-label text-md-right">Category</label>
-                <input id="category_id" type="text" placeholder="Category" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id" value="{{ $income->category_id }}">
+                {{-- <input id="category_id" type="text" placeholder="Category" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id" value="{{ $expense->category_id }}"> --}}
+                <select class="form-control" id="category_id" name="category_id">
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
                 @if ($errors->has('category_id'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('category_id') }}</strong>
@@ -35,7 +42,10 @@
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
                 <label for="monthly" class="col-form-label text-md-right">Monthly</label>
-                <input id="monthly" type="text" placeholder="Monthly" class="form-control{{ $errors->has('monthly') ? ' is-invalid' : '' }}" name="monthly" value="{{ $income->monthly }}">
+                <select class="form-control" id="monthly" name="monthly">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
                 @if ($errors->has('monthly'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('monthly') }}</strong>
@@ -46,7 +56,7 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
-                <label for="amount" class="col-form-label text-md-right">Amount</label>
+                <label for="amount" class="col-form-label text-md-right">Amount (kr)</label>
                 <input id="amount" type="text" placeholder="Amount" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" value="{{ $income->amount }}">
                 @if ($errors->has('amount'))
                     <span class="invalid-feedback" role="alert">

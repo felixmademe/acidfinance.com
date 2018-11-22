@@ -8,6 +8,7 @@ use View;
 use Auth;
 use App\User;
 use App\Income;
+use App\IncomeCategory;
 use Illuminate\Http\Request;
 
 class IncomeController extends Controller
@@ -98,7 +99,9 @@ class IncomeController extends Controller
     {
         $income = Income::find( $id );
 
-        return view( 'income.edit' )->with( 'income', $income );
+        return view( 'income.edit' )
+               ->with( 'income', $income  )
+               ->with( 'categories', IncomeCategory::get() );;
     }
 
     /**

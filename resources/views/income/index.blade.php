@@ -19,7 +19,7 @@
                 @foreach ( $incomes as $income)
                     <tr id="incomeRow{{ $income->id }}">
                         <td>{{ $income->name }}</td>
-                        <td>{{ $income->category_id }}</td>
+                        <td>{{ $income->category->name }}</td>
                         <td>
                             @if( $income->monthly == 1 )
                                 {{ 'Yes' }}

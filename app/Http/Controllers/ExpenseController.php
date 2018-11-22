@@ -8,6 +8,7 @@ use View;
 use Auth;
 use App\User;
 use App\Expense;
+use App\ExpenseCategory;
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
@@ -98,7 +99,9 @@ class ExpenseController extends Controller
     {
         $expense = Expense::find( $id );
 
-        return view( 'expense.edit' )->with( 'expense', $expense );
+        return view( 'expense.edit' )
+               ->with( 'expense', $expense  )
+               ->with( 'categories', ExpenseCategory::get() );
     }
 
     /**
