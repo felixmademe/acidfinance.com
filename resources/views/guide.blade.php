@@ -11,12 +11,15 @@
     <ol>
         <li>Create an account</li>
         <li>Login to your account</li>
-        <li>Go to <a href="profile">my pages</a></li>
-        <li>Enter your monthly income</li>
-        <li>Enter your monthly expenses</li>
-        <li>Add extra income or expenses</li>
+        <li>Click "Edit" on
+            <a href="{{ route( 'income.index' ) }}">Income</a>
+            or
+            <a href="{{ route( 'expense.index' ) }}"> Expense</a></li>
+        <li>Add an Income or Expense</li>
+        <li>Click Edit on the new Income/Expense</li>
+        <li>Enter the necessary info</li>
         <li>Let the web app crunch the numbers</li>
-        <li>Voila, the result should be displayed</li>
+        <li>Voila, the result should be displayed on the <a href="{{ url( '/' ) }}">startpage</a></li>
     </ol>
 
 @endsection
