@@ -19,7 +19,7 @@
                 @foreach ( $expenses as $expense )
                     <tr id="expenseRow{{ $expense->id }}">
                         <td>{{ $expense->name }}</td>
-                        <td>{{ $expense->category->name }}</td>
+                        <td>{{ $expense->category->name ?? 'None'}}</td>
                         <td>
                             @if( $expense->monthly == 1 )
                                 {{ 'Yes' }}
