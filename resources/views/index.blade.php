@@ -1,18 +1,26 @@
 @extends( 'layouts.app' )
+@section( 'title', "{{ date( 'F' ) }}" )
 @section( 'content' )
 @auth
 
-    @section( 'title', "{{ date( 'F' ) }}" )
-    <div class="card">
-        <img class="card-img-top" src="{{ asset( '/img/total.svg' ) }}" alt="Equal icon in cirlce on a one colour background">
-        <div class="card-body text-center">
-            <h4>Total</h4>
-            {{-- TODO: calculate money (easy) --}}
-            {{-- TODO: if-statment, green if money left, red if money in minus --}}
-            <p class="sum">20213kr left this month</p>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <img class="card-img-top" src="{{ asset( '/img/total.svg' ) }}" alt="Minus icon in cirlce on a one colour background">
+                <div class="card-body">
+                    <h4 class="text-center">Total</h4>
+                    <hr>
+                    <ul class="list-group">
+                        <li class="list-group-item border-0">
+                            <span class="blue-text">{{ Auth::user()->calculateTotalSum() }}kr</span> 
+                            left this month
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-    <br><hr><br>
+    <hr>
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -24,14 +32,13 @@
                         {{-- TODO: Loop of incomes --}}
                         {{-- TODO: Split for different categories --}}
                         <li class="list-group-item border-0">
-                            Total - <span class="green-text">2310123 kr</span>
+                            Total - <span class="green-text">{{ Auth::user()->incomes->sum( 'amount' ) }}kr</span>
                         </li>
-                        <li class="list-group-item border-0">
-                            Source - <span class="green-text">2000 kr</span>
-                        </li>
-                        <li class="list-group-item border-0">
-                            Source - <span class="green-text">2000 kr</span>
-                        </li>
+                        @foreach ( Auth::user()->incomes as $income )
+                            <li class="list-group-item border-0">
+                                {{ $income->name }} - <span class="green-text">{{ $income->amount }}kr</span>
+                            </li>
+                        @endforeach
                     </ul>
                     <a href="{{ route( 'income.index' ) }}" class="btn btn-orange">Edit</a>
                 </div>
@@ -47,11 +54,13 @@
                         {{-- TODO: Loop of expenses --}}
                         {{-- TODO: Split for different categories --}}
                         <li class="list-group-item border-0">
-                            Total - <span class="red-text">2310123 kr</span>
+                            Total - <span class="red-text">{{ Auth::user()->expenses->sum( 'amount' ) }}kr</span>
                         </li>
-                        <li class="list-group-item border-0">
-                            Source - <span class="red-text">2000 kr</span>
-                        </li>
+                        @foreach ( Auth::user()->expenses as $expense)
+                            <li class="list-group-item border-0">
+                                {{ $expense->name }} - <span class="red-text">{{ $expense->amount }}kr</span>
+                            </li>
+                        @endforeach
                     </ul>
                     <a href="{{ route( 'expense.index' ) }}" class="btn btn-orange">Edit</a>
                 </div>

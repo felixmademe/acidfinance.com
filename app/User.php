@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Auth;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -30,12 +32,24 @@ class User extends Authenticatable
 
     public function incomes()
     {
-        return $this->hasMany('App\Income');
+        return $this->hasMany( 'App\Income' );
     }
 
     public function expenses()
     {
-        return $this->hasMany('App\Expense');
+        return $this->hasMany( 'App\Expense' );
+    }
+
+    public function calculateTotalSum()
+    {
+        $income = Auth::user()->incomes->sum( 'amount' );
+        $expense = Auth::user()->expenses->sum( 'amount' );
+        return $income - $expense;
+    }
+
+    public function fetchTopThree( String $type )
+    {
+
     }
 
     protected $table = 'users';
