@@ -23,7 +23,12 @@
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
                 <label for="category" class="col-form-label text-md-right">Category</label>
-                <input id="category_id" type="text" placeholder="Category" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id" value="{{ $expense->category_id }}">
+                {{-- <input id="category_id" type="text" placeholder="Category" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id" value="{{ $expense->category_id }}"> --}}
+                <select class="form-control" id="category_id">
+                    @foreach ($categories as $category)
+
+                    @endforeach
+                </select>
                 @if ($errors->has('category_id'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('category_id') }}</strong>
@@ -47,7 +52,7 @@
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
                 <label for="amount" class="col-form-label text-md-right">Amount</label>
-                <input id="amount" type="text" placeholder="amount" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" value="{{ $expense->amount }}">
+                <input id="amount" type="text" placeholder="Amount" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" value="{{ $expense->amount }}">
                 @if ($errors->has('amount'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('amount') }}</strong>
@@ -65,5 +70,5 @@
             </div>
         </div>
     </form>
-    
+
 @endsection

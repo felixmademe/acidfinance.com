@@ -47,7 +47,7 @@
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
                 <label for="amount" class="col-form-label text-md-right">Amount</label>
-                <input id="amount" type="text" placeholder="amount" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" value="{{ $income->amount }}">
+                <input id="amount" type="text" placeholder="Amount" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" value="{{ $income->amount }}">
                 @if ($errors->has('amount'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('amount') }}</strong>
