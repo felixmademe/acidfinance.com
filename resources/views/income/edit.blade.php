@@ -26,7 +26,7 @@
                 {{-- <input id="category_id" type="text" placeholder="Category" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id" value="{{ $expense->category_id }}"> --}}
                 <select class="form-control" id="category_id" name="category_id">
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                        <option value="{{ $category->id }}" {{ old( 'category_id', $income->category_id ) == $category->id ? 'selected' : '' }}>
                             {{ $category->name }}
                         </option>
                     @endforeach
@@ -43,8 +43,8 @@
             <div class="col-lg-8 offset-lg-2">
                 <label for="monthly" class="col-form-label text-md-right">Monthly</label>
                 <select class="form-control" id="monthly" name="monthly">
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
+                    <option value="1" {{ old( 'monthly', $income->monthly ) == 1 ? 'selected' : '' }}>Yes</option>
+                    <option value="0" {{ old( 'monthly', $income->monthly ) == 0 ? 'selected' : '' }}>No</option>
                 </select>
                 @if ($errors->has('monthly'))
                     <span class="invalid-feedback" role="alert">
