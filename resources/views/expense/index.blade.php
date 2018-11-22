@@ -5,7 +5,7 @@
 
     <h4 class="text-center">{{ date( 'F' ) }}</h4>
     <div class="flash-message"></div>
-        <table id="expensedt" class="table table-striped" cellspacing="0" width="100%">
+        <table id="expensedt" class="table table-striped table-responsive" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th class="th-sm">Name</th>
