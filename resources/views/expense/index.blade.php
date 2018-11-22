@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($expenses as $expense)
+                @foreach ( $expenses as $expense )
                     <tr id="expenseRow{{ $expense->id }}">
                         <td>{{ $expense->name }}</td>
                         <td>{{ $expense->category_id }}</td>
@@ -31,7 +31,6 @@
                         <td class="">
                             <a href="{{ route( 'expense.edit.{id}', [ 'id' => $expense->id ] ) }}" class="blue-text">Edit </a>
                              /
-                             {{-- action="{{ route( 'expense.destroy', [ 'destroy' => $expense->id ] ) }}" --}}
                             <form class="expense-form">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $expense->id }}">

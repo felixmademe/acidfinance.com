@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($incomes as $income)
+                @foreach ( $incomes as $income)
                     <tr id="incomeRow{{ $income->id }}">
                         <td>{{ $income->name }}</td>
                         <td>{{ $income->category_id }}</td>
@@ -31,8 +31,7 @@
                         <td class="">
                             <a href="{{ route( 'income.edit.{id}', [ 'id' => $income->id ] ) }}" class="blue-text">Edit </a>
                              /
-                             {{-- action="{{ route( 'income.destroy', [ 'destroy' => $income->id ] ) }}" --}}
-                            <form class="transaction-form">
+                            <form class="income-form">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $income->id }}">
                                 <button type="submit" name="submit" class="no-btn p-0">
