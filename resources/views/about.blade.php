@@ -1,9 +1,9 @@
 @extends( 'layouts.app' )
-@section( 'title', 'What is Simpl Financ?' )
+@section( 'title', 'What is Acid Finance?' )
 @section( 'content' )
 
     <p>
-        {{ config( 'app.name', 'Simpl Financ' ) }} is a web app for keeping track of monthly income and expenses in a simple way.
+        {{ config( 'app.name', 'Acid Finance' ) }} is a web app for keeping track of monthly income and expenses in a simple way.
         Just enter you income, your expenses and the web app automatically calculates the money you should have left.
         Sort your different income and expense sources for a more clear picture on your monthly economy.
     </p>

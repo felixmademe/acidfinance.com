@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Simpl Financ'),
+    'name' => env('APP_NAME', 'Acid Finance'),
 
     /*
     |--------------------------------------------------------------------------

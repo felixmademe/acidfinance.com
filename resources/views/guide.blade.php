@@ -3,7 +3,7 @@
 @section( 'content' )
 
     <p>
-        {{ config( 'app.name', 'Simpl Financ' ) }} is made to be simple and easy to use.
+        {{ config( 'app.name', 'Acid Finance' ) }} is made to be simple and easy to use.
         You do not need to calculate anything, the web app does it for you, simple right?
         <br><br>
         So, here is how you do it:

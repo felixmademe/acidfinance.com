@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Simpl Financ helps you visualize your income and expenses">
+    <meta name="description" content="Acid Finance helps you visualize your income and expenses">
     <meta name="author" content="Felix Wetell">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Simpl Financ') }} - @yield( 'title' )</title>
+    <title>{{ config('app.name', 'Acid Finance') }} - @yield( 'title' )</title>
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +34,7 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route( 'about' ) }}">What is {{ config('app.name', 'Simpl Financ') }}?</a>
+                    <a class="nav-link" href="{{ route( 'about' ) }}">What is {{ config('app.name', 'Acid Finance') }}?</a>
                 </li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ route( 'guide' ) }}">How to use</a>
@@ -99,7 +99,7 @@
                     <img src="{{ asset( '/img/logo.svg' ) }}" alt="">
                 </div>
                 <div class="col-md-3">
-                    <h4>Simpl Financ</h4>
+                    <h4>Acid Finance</h4>
                     <p>
                         Karlstad
                         <br>
@@ -110,7 +110,7 @@
                 <div class="col-md-3">
                     <h4>Useful Links</h4>
                     <p>
-                        <a href="{{ route( 'about' ) }}">What is {{ config('app.name', 'Simpl Financ') }}?</a>
+                        <a href="{{ route( 'about' ) }}">What is {{ config('app.name', 'Acid Finance') }}?</a>
                         <br>
                         <a href="{{ route( 'guide' ) }}">How to use</a>
                         <br>
@@ -121,7 +121,7 @@
                 <div class="col-md-3">
                     <h4>Contact</h4>
                     <p>
-                        hello@simplefinance.com
+                        hello@acidfinance.com
                     </p>
                 </div>
             </div>

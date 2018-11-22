@@ -91,7 +91,7 @@
             <a href="{{ route( 'previous' ) }}" class="btn btn-blue">Previous months</a>
         </div>
     @else
-        @section( 'title', 'Simpl Financ' )
+        @section( 'title', 'Acid Finance' )
         <div class="jumbotron">
             <h1>Simplifying finance</h1>
             <p>For me, for you, for everyone.</p>
