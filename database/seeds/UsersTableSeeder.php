@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
             'email'    => 'admin@simplefinance.com',
             'username'     => 'Admin',
             'password' => bcrypt('secret'),
+            'email_verified_at' => now(),
         ]);
         $users = factory(User::class, 10)->create();
     }
