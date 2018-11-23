@@ -18,7 +18,10 @@
     @endif
 
     @auth
-        @section( 'title', "{{ date( 'F' ) }}" )
+        @section( 'title', "Current month" )
+        <div class="text-center">
+            <h4>{{ date( 'F' ) }}</h4>
+        </div>
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card">
