@@ -1,4 +1,4 @@
-<tr id="$expenseRow{{ $expense->id }}">
+<tr id="expenseRow{{ $expense->id }}">
     <td>{{ $expense->name }}</td>
     <td>{{ $expense->category->name ?? 'None' }}</td>
     <td>
