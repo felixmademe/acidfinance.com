@@ -43,9 +43,9 @@ $( '.addIncome' ).on( 'submit', function( e )
     var form = $(this);
     let ajax = $.ajax(
     {
-        type: 'GET',
+        type: 'POST',
         async: false,
-        url: '/income/create',
+        url: '/income/store',
         dataType: 'json',
         success: function( data )
         {
@@ -102,9 +102,9 @@ $( '.addExpense' ).on( 'submit', function( e )
     var form = $(this);
     let ajax = $.ajax(
     {
-        type: 'GET',
+        type: 'POST',
         async: false,
-        url: '/expense/create',
+        url: '/expense/store',
         dataType: 'json',
         success: function( data )
         {

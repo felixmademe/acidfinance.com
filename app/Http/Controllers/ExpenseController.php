@@ -31,40 +31,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        $expense = new Expense;
-        $expense->name = 'Expense';
-        $expense->category_id = 0;
-        $expense->monthly = true;
-        $expense->amount = 0;
-        $expense->user_id = Auth::user()->id;
-        $expense->save();
-
-        if( count( Auth::user()->expenses ) > 1 )
-        {
-            Session::flash( 'success', "Expense added" );
-            $message = View::make( 'partials/flash-messages' );
-            $expenseView = View::make( 'partials/expense-row' )->with( 'expense', $expense );
-
-            return response()->json(
-            [
-                'message' => $message->render(),
-                'expenseView' => $expenseView->render(),
-            ], 200 );
-        }
-        else
-        {
-            Session::flash( 'success', "expense added" );
-            $message = View::make( 'partials/flash-messages' );
-            $expenseView = View::make( 'partials/expense-row' )->with( 'expense', $expense );
-
-            return response()->json(
-            [
-                'message' => $message->render(),
-                'expenseView' => $expenseView->render(),
-            ], 200 );
-        }
-
-        // return $reult = [ View::make( 'partials/flash-messages' ), $expense];
+        //
     }
 
     /**
@@ -75,7 +42,25 @@ class ExpenseController extends Controller
      */
     public function store( Request $request )
     {
-        //
+        $expense = new Expense;
+        $expense->name = 'Expense';
+        $expense->category_id = 0;
+        $expense->monthly = true;
+        $expense->amount = 0;
+        $expense->user_id = Auth::user()->id;
+        $expense->save();
+
+        Session::flash( 'success', "Expense added" );
+        $message = View::make( 'partials/flash-messages' );
+        $expenseView = View::make( 'partials/expense-row' )->with( 'expense', $expense );
+
+        return response()->json(
+        [
+            'message' => $message->render(),
+            'expenseView' => $expenseView->render(),
+        ], 200 );
+
+        // return $reult = [ View::make( 'partials/flash-messages' ), $expense];
     }
 
     /**

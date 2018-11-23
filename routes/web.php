@@ -53,7 +53,10 @@ Route::name( 'income.' )->group( function ()
     Route::get( 'income', 'IncomeController@index' )->name( 'index' )->middleware( 'auth' );
     Route::get( 'income/create', 'IncomeController@create' )->name( 'create' );
     Route::get( 'income/edit/{id}', 'IncomeController@edit' )->name( 'edit.{id}' );
+
+    Route::post( 'income/store', 'IncomeController@store' )->name( 'store' );
     Route::post( 'income/remove/{id}', 'IncomeController@destroy' )->name( 'remove.{id}' );
+
     Route::put( 'income/update/{id}', 'IncomeController@update' )->name( 'update.{id}' );
 });
 
@@ -62,6 +65,9 @@ Route::name( 'expense.' )->group( function ()
     Route::get( 'expense', 'ExpenseController@index' )->name( 'index' )->middleware( 'auth' );
     Route::get( 'expense/create', 'ExpenseController@create' )->name( 'create' );
     Route::get( 'expense/edit/{id}', 'ExpenseController@edit' )->name( 'edit.{id}' );
+
+    Route::post( 'expense/store', 'ExpenseController@store' )->name( 'store' );
     Route::post( 'expense/remove/{id}', 'ExpenseController@destroy' )->name( 'remove.{id}' );
+
     Route::put( 'expense/update/{id}', 'ExpenseController@update' )->name( 'update.{id}' );
 });

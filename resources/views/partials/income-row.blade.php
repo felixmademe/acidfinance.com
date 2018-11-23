@@ -1,6 +1,6 @@
 <tr id="incomeRow{{ $income->id }}">
     <td>{{ $income->name }}</td>
-    <td>{{ $income->category_id }}</td>
+    <td>{{ $income->category->name ?? 'None' }}</td>
     <td>
         @if( $income->monthly == 1 )
             {{ 'Yes' }}

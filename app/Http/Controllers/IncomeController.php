@@ -31,6 +31,17 @@ class IncomeController extends Controller
      */
     public function create()
     {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store( Request $request )
+    {
         $income = new Income;
         $income->name = 'Income';
         $income->category_id = 0;
@@ -50,17 +61,7 @@ class IncomeController extends Controller
         ], 200 );
 
         // return $reult = [ View::make( 'partials/flash-messages' ), $income];
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store( Request $request )
-    {
-        //
     }
 
     /**
