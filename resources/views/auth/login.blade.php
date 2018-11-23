@@ -3,10 +3,11 @@
 @section( 'content' )
 
     <div class="text-center">
-        <a class="btn btn-link" href="{{ route( 'register' ) }}">
-            {{ __( 'New user? Register here' ) }}
+        <a class="dark-link" href="{{ route( 'register' ) }}">
+            New user? Register here
         </a>
     </div>
+    <br>
     <form method="POST" action="{{ route( 'login' ) }}">
         @csrf
 
@@ -49,10 +50,10 @@
         <div class="form-group row mb-0">
             <div class="col-lg-8 offset-lg-2">
                 <button type="submit" class="btn btn-primary ml-0">
-                    {{ __('Login') }}
+                    Login
                 </button>
-                <a class="btn btn-link" href="{{ route( 'password.request' ) }}">
-                    {{ __( 'Forgot Your Password?' ) }}
+                <a class="dark-link" href="{{ route( 'password.request' ) }}">
+                    Forgot Your Password?
                 </a>
             </div>
         </div>

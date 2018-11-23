@@ -3,10 +3,11 @@
 @section( 'content' )
 
     <div class="text-center">
-        <a class="btn btn-link" href="{{ route( 'login' ) }}">
-            {{ __( 'Already a user? Login here' ) }}
+        <a class="dark-link" href="{{ route( 'login' ) }}">
+            Already a user? Login here
         </a>
     </div>
+    <br>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
