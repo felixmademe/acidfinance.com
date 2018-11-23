@@ -39,30 +39,15 @@ class IncomeController extends Controller
         $income->user_id = Auth::user()->id;
         $income->save();
 
-        if( count( Auth::user()->incomes ) > 1 )
-        {
-            Session::flash( 'success', "Income added" );
-            $message = View::make( 'partials/flash-messages' );
-            $incomeView = View::make( 'partials/income-row' )->with( 'income', $income );
+        Session::flash( 'success', "Income added" );
+        $message = View::make( 'partials/flash-messages' );
+        $incomeView = View::make( 'partials/income-row' )->with( 'income', $income );
 
-            return response()->json(
-            [
-                'message' => $message->render(),
-                'incomeView' => $incomeView->render(),
-            ], 200 );
-        }
-        else
-        {
-            Session::flash( 'success', "Income added" );
-            $message = View::make( 'partials/flash-messages' );
-            $incomeView = View::make( 'partials/income-row' )->with( 'income', $income );
-
-            return response()->json(
-            [
-                'message' => $message->render(),
-                'incomeView' => $incomeView->render(),
-            ], 200 );
-        }
+        return response()->json(
+        [
+            'message' => $message->render(),
+            'incomeView' => $incomeView->render(),
+        ], 200 );
 
         // return $reult = [ View::make( 'partials/flash-messages' ), $income];
     }
