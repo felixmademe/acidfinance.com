@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="550px" height="300px" viewBox="0 0 550 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>expense</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-412.000000, -75.000000)">
+            <g id="expense" transform="translate(412.000000, 75.000000)">
+                <rect id="Rectangle" fill="#F44336" fill-rule="nonzero" x="0" y="0" width="550" height="300"></rect>
+                <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero" cx="275" cy="150" r="30"></circle>
+                <g id="flaticon1542649856-svg" transform="translate(258.000000, 148.000000)" fill="#F44336">
+                    <path d="M33.0911484,0.0436077236 L17.0881098,0.0436077236 L1.89867886,0.0436077236 C1.29941057,0.0436077236 0,0.857357724 0,2.48478659 C0,4.11221545 1.29948171,4.92596545 1.89867886,4.92596545 L17.0881098,4.92596545 L33.0912907,4.92596545 C33.6903455,4.92596545 34.9898984,4.11221545 34.9898984,2.48478659 C34.9898984,0.857357724 33.6903455,0.0436077236 33.0911484,0.0436077236 Z" id="Path"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
