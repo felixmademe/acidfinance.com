@@ -20,7 +20,7 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Auth::user()->fetchCurrentMonth( 'expenses' );
+        $expenses = Auth::user()->currentMonth( 'expenses' );
         return view( 'expense.index' )->with( 'expenses', $expenses );
     }
 
