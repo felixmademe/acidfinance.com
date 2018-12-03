@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::get( '/', 'MonthController@index' )->name( 'index' )->middleware( 'auth' );
-Route::get( 'previous-months', 'MonthController@index' )->name( 'previous' )->middleware( 'auth' );
+Route::get( 'previous-months', 'MonthController@previous' )->name( 'previous' )->middleware( 'auth' );
 
 Route::get( 'what-is-simple-finance', function ()
 {
