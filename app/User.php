@@ -65,8 +65,6 @@ class User extends Authenticatable
         $expenses = DB::table( $table )
                     ->where( 'user_id', $user->id )
                     ->whereMonth( 'created_at', $currentMonth )
-                    ->orderBy( 'amount', 'desc' )
-                    ->limit( 3 )
                     ->get();
 
         return $expenses;
