@@ -23,27 +23,7 @@
             <h4>{{ date( 'F' ) }}</h4>
         </div>
         <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="card">
-                    <img class="card-img-top" src="{{ asset( '/img/total.svg' ) }}" alt="Minus icon in cirlce on a one colour background">
-                    <div class="card-body">
-                        <h4 class="text-center">Total</h4>
-                        <hr>
-                        <ul class="list-group">
-                            <li class="list-group-item border-0">
-                                <span class="blue-text">
-                                    {{ Auth::user()->currentMonthTotalSum( $currentMonth ) }}kr
-                                </span>
-                                left this month
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="card">
                     <img class="card-img-top" src="{{ asset( '/img/income.svg' ) }}" alt="Plus icon in cirlce on a one colour background">
                     <div class="card-body">
@@ -69,7 +49,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 mt-4 mt-md-0">
+            <br class="d-block d-md-none">
+            <div class="col-md-4">
                 <div class="card">
                     <img class="card-img-top" src="{{ asset( '/img/expense.svg' ) }}" alt="Minus icon in cirlce on a one colour background">
                     <div class="card-body">
@@ -92,6 +73,24 @@
                             @endif
                         </ul>
                         <a href="{{ route( 'expense.index' ) }}" class="btn btn-orange">Edit</a>
+                    </div>
+                </div>
+            </div>
+            <br class="d-block d-md-none">
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="{{ asset( '/img/total.svg' ) }}" alt="Minus icon in cirlce on a one colour background">
+                    <div class="card-body">
+                        <h4 class="text-center">Total</h4>
+                        <hr>
+                        <ul class="list-group">
+                            <li class="list-group-item border-0">
+                                <span class="blue-text">
+                                    {{ Auth::user()->currentMonthTotalSum( $currentMonth ) }}kr
+                                </span>
+                                left this month
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
