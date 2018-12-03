@@ -4,6 +4,7 @@ namespace App;
 
 use Auth;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,16 +41,21 @@ class User extends Authenticatable
         return $this->hasMany( 'App\Expense' );
     }
 
-    public function calculateTotalSum()
+    public function currentMonthTotalSum( $currentMonth )
     {
-        $income = Auth::user()->incomes->sum( 'amount' );
-        $expense = Auth::user()->expenses->sum( 'amount' );
+        $user = Auth::user();
+
+        $income = DB::table( 'incomes' )
+                    ->where( 'user_id', $user->id )
+                    ->whereMonth( 'created_at', $currentMonth )
+                    ->sum( 'amount' );
+
+        $expense = DB::table( 'expenses' )
+                    ->where( 'user_id', $user->id )
+                    ->whereMonth( 'created_at', $currentMonth )
+                    ->sum( 'amount' );
+
         return $income - $expense;
-    }
-
-    public function fetchTopThree( String $type )
-    {
-
     }
 
     protected $table = 'users';

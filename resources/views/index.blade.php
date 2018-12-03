@@ -32,7 +32,7 @@
                         <ul class="list-group">
                             <li class="list-group-item border-0">
                                 <span class="blue-text">
-                                    {{ Auth::user()->calculateTotalSum() }}kr
+                                    {{ Auth::user()->currentMonthTotalSum( $currentMonth ) }}kr
                                 </span>
                                 left this month
                             </li>
@@ -50,16 +50,20 @@
                         <h4 class="text-center">Income</h4>
                         <hr>
                         <ul class="list-group">
-                            {{-- TODO: Loop of incomes --}}
-                            {{-- TODO: Split for different categories --}}
                             <li class="list-group-item border-0">
-                                Total - <span class="green-text">{{ Auth::user()->incomes->sum( 'amount' ) }}kr</span>
+                                Total - <span class="green-text">{{ $incomes->sum( 'amount' ) }}kr</span>
                             </li>
-                            @foreach ( Auth::user()->incomes as $income )
-                                <li class="list-group-item border-0">
-                                    {{ $income->name }} - <span class="green-text">{{ $income->amount }}kr</span>
-                                </li>
-                            @endforeach
+                        </ul>
+                        <hr>
+                        <ul class="list-group">
+                            @if ( $incomes->count() != 0 )
+                                <li class="list-group-item border-0 font-weight-bold">Top Three:</li>
+                                @foreach ( $incomes as $income )
+                                    <li class="list-group-item border-0">
+                                        {{ $income->name }} - <span class="green-text">{{ $income->amount }}kr</span>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                         <a href="{{ route( 'income.index' ) }}" class="btn btn-orange">Edit</a>
                     </div>
@@ -72,16 +76,20 @@
                         <h4 class="text-center">Expense</h4>
                         <hr>
                         <ul class="list-group">
-                            {{-- TODO: Loop of expenses --}}
-                            {{-- TODO: Split for different categories --}}
                             <li class="list-group-item border-0">
-                                Total - <span class="red-text">{{ Auth::user()->expenses->sum( 'amount' ) }}kr</span>
+                                Total - <span class="red-text">{{ $expenses->sum( 'amount' ) }}kr</span>
                             </li>
-                            @foreach ( Auth::user()->expenses as $expense)
-                                <li class="list-group-item border-0">
-                                    {{ $expense->name }} - <span class="red-text">{{ $expense->amount }}kr</span>
-                                </li>
-                            @endforeach
+                        </ul>
+                        <hr>
+                        <ul class="list-group">
+                            @if ( $expenses->count() != 0 )
+                                <li class="list-group-item border-0 font-weight-bold">Top Three:</li>
+                                @foreach ( $expenses as $expense)
+                                    <li class="list-group-item border-0">
+                                        {{ $expense->name }} - <span class="red-text">{{ $expense->amount }}kr</span>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                         <a href="{{ route( 'expense.index' ) }}" class="btn btn-orange">Edit</a>
                     </div>

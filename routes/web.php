@@ -13,10 +13,8 @@
 
 Auth::routes();
 
-Route::get( '/', function ()
-{
-    return view( 'index' );
-});
+Route::get( '/', 'MonthController@index' )->name( 'index' )->middleware( 'auth' );
+Route::get( 'previous-months', 'MonthController@index' )->name( 'previous' )->middleware( 'auth' );
 
 Route::get( 'what-is-simple-finance', function ()
 {
@@ -32,11 +30,6 @@ Route::get( 'privacy-policy', function ()
 {
     return view( 'privacy' );
 })->name( 'privacy' );
-
-Route::get( 'previous-months', function ()
-{
-    return view( 'previous' );
-})->name( 'previous' );
 
 Route::name( 'user.' )->group( function ()
 {
