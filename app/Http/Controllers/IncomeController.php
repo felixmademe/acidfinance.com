@@ -59,9 +59,6 @@ class IncomeController extends Controller
             'message' => $message->render(),
             'incomeView' => $incomeView->render(),
         ], 200 );
-
-        // return $reult = [ View::make( 'partials/flash-messages' ), $income];
-
     }
 
     /**
