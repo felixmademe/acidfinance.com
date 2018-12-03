@@ -15,12 +15,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="{{ asset( '/css/main.min.css' ) }}">
-    <link rel="icon" href="{{ asset( '/img/icon.ico' ) }}">
+    <link rel="icon" href="{{ asset( '/img/acid-icon.ico' ) }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
         <a class="navbar-brand" href="/">
-        	<img src="{{ asset( '/img/logo.svg' ) }}" alt="">
+        	<img src="{{ asset( '/img/acid-logo.svg' ) }}" alt="">
         </a>
         <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
             <span class="dark-blue-text">
