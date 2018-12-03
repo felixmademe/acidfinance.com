@@ -58,8 +58,9 @@ class User extends Authenticatable
         return $income - $expense;
     }
 
-    public function fetchCurrentMonth( $table, $currentMonth )
+    public function fetchCurrentMonth( $table )
     {
+        $currentMonth = date( 'm' );
         $user = Auth::user();
         $expenses = DB::table( $table )
                     ->where( 'user_id', $user->id )
