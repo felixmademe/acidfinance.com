@@ -44,20 +44,16 @@
             </tbody>
         </table>
         <hr>
-        <div class="text-center">
-            <p>Missing an income? Click the button below to add more</p>
-            <form class="addIncome">
-                @csrf
-                <button type="submit" name="addIncome" class="btn btn-primary">Add income</button>
-            </form>
-        </div>
-        {{-- <div class="text-center">
-            <p>No incomes found, click the button below to start adding one.</p>
-            <form id="addIncome" method="GET" action="{{ route( 'income.create' ) }}">
-                @csrf
-                <button type="submit" name="addIncome" class="btn btn-primary">Add income</button>
-            </form>
-        </div> --}}
+            <div class="text-center">
+                <p>Missing an income? Click the button below to add more</p>
+                <form class="addIncome">
+                    @csrf
+                    <button type="submit" name="addIncome" class="btn btn-primary">Add income</button>
+                </form>
+                <hr>
+                <a class="btn btn-blue" href="{{ route( 'index' ) }}">Overview</a>
+            </div>
+
 
 @endauth
 @endsection

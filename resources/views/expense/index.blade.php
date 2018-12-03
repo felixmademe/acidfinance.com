@@ -50,14 +50,9 @@
                 @csrf
                 <button type="submit" name="addExpense" class="btn btn-primary">Add expense</button>
             </form>
+            <hr>
+            <a class="btn btn-blue" href="{{ route( 'index' ) }}">Overview</a>
         </div>
-        {{-- <div class="text-center">
-            <p>No expenses found, click the button below to start adding one.</p>
-            <form id="addexpense" method="GET" action="{{ route( 'expense.create' ) }}">
-                @csrf
-                <button type="submit" name="addexpense" class="btn btn-primary">Add expense</button>
-            </form>
-        </div> --}}
 
 @endauth
 @endsection
