@@ -7,6 +7,8 @@ use View;
 
 use Auth;
 use App\User;
+use App\Income;
+use App\Expense;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,19 +33,17 @@ class MonthController extends Controller
     {
         $currentMonth = date( 'm' );
         $user = Auth::user();
-        $incomes = DB::table( 'incomes' )
-                    ->where( 'user_id', $user->id )
-                    ->whereMonth( 'created_at', $currentMonth )
-                    ->orderBy( 'amount', 'desc' )
-                    ->limit( 3 )
-                    ->get();
+        $incomes = Income::where( 'user_id', $user->id )
+                         ->whereMonth( 'created_at', $currentMonth )
+                         ->orderBy( 'amount', 'desc' )
+                         ->limit( 3 )
+                         ->get();
 
-        $expenses = DB::table( 'expenses' )
-                    ->where( 'user_id', $user->id )
-                    ->whereMonth( 'created_at', $currentMonth )
-                    ->orderBy( 'amount', 'desc' )
-                    ->limit( 3 )
-                    ->get();
+        $expenses = Expense::where( 'user_id', $user->id )
+                           ->whereMonth( 'created_at', $currentMonth )
+                           ->orderBy( 'amount', 'desc' )
+                           ->limit( 3 )
+                           ->get();
 
         return view( 'index' )
                 ->with( 'incomes', $incomes )
