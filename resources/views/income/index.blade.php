@@ -20,13 +20,7 @@
                     <tr id="incomeRow{{ $income->id }}">
                         <td>{{ $income->name }}</td>
                         <td>{{ $income->category->name ?? 'None' }}</td>
-                        <td>
-                            @if( $income->monthly == 1 )
-                                {{ 'Yes' }}
-                            @else
-                                {{ 'No' }}
-                            @endif
-                        </td>
+                        <td>{{ $income->monthly == 1 ? 'Yes' : 'No' }}</td>
                         <td class="green-text">{{ $income->amount }}kr</td>
                         <td class="">
                             <a href="{{ route( 'income.edit.{id}', [ 'id' => $income->id ] ) }}" class="blue-text">Edit </a>
