@@ -44,6 +44,9 @@
             @endforeach
         </ul>
     @endforeach
+    <div class="text-center">
+        <a class="btn btn-blue" href="{{ route( 'index' ) }}">Overview</a>
+    </div>
 
 @endauth
 @endsection

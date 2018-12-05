@@ -49,8 +49,7 @@
                     </div>
                 </div>
             </div>
-            <br class="d-block d-md-none">
-            <div class="col-md-4">
+            <div class="col-md-4 mt-4 mt-md-0">
                 <div class="card">
                     <img class="card-img-top" src="{{ asset( '/img/expense.svg' ) }}" alt="Minus icon in cirlce on a one colour background">
                     <div class="card-body">
@@ -76,8 +75,7 @@
                     </div>
                 </div>
             </div>
-            <br class="d-block d-md-none">
-            <div class="col-md-4">
+            <div class="col-md-4 mt-4 mt-md-0">
                 <div class="card">
                     <img class="card-img-top" src="{{ asset( '/img/total.svg' ) }}" alt="Minus icon in cirlce on a one colour background">
                     <div class="card-body">
