@@ -13,6 +13,7 @@
                     <table class="table table-hover col-12">
                         <thead>
                             <tr>
+                                <th class="th-sm">Type</th>
                                 <th class="th-sm">Name</th>
                                 <th class="th-sm">Category</th>
                                 <th class="th-sm">Monthly</th>
@@ -22,12 +23,19 @@
                         <tbody>
                             @foreach( $transactions as $type => $transaction )
                                 <tr>
+                                    @if( get_class( $transaction ) === 'App\Income' )
+                                        <td class="w-15 green-text">Income</td>
+                                    @elseif( get_class( $transaction ) === 'App\Expense' )
+                                        <td class="w-15 red-text">Expense</td>
+                                    @endif
                                     <td class="w-40">{{ $transaction->name }}</td>
-                                    <td class="w-20">{{ $transaction->category->name ?? 'None' }}</td>
-                                    <td class="w-20">{{ $transaction->monthly == 1 ? 'Yes' : 'No' }}</td>
-                                    <td class="w-20 {{ get_class( $transaction ) === 'App\Income' ? "green-text" : "red-text" }}">
-                                        {{ $transaction->amount }}kr
-                                    </td>
+                                    <td class="w-15">{{ $transaction->category->name ?? 'None' }}</td>
+                                    <td class="w-15">{{ $transaction->monthly == 1 ? 'Yes' : 'No' }}</td>
+                                    @if( get_class( $transaction ) === 'App\Income' )
+                                        <td class="w-15 green-text">{{ $transaction->amount }}kr</td>
+                                    @elseif ( get_class( $transaction ) === 'App\Expense' )
+                                        <td class="w-15 red-text">-{{ $transaction->amount }}kr</td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
