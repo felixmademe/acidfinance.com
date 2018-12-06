@@ -32,6 +32,13 @@ class UrlGenerator implements UrlGeneratorContract
     protected $request;
 
     /**
+     * The asset root URL.
+     *
+     * @var string
+     */
+    protected $assetRoot;
+
+    /**
      * The forced URL root.
      *
      * @var string
@@ -39,7 +46,7 @@ class UrlGenerator implements UrlGeneratorContract
     protected $forcedRoot;
 
     /**
-     * The forced schema for URLs.
+     * The forced scheme for URLs.
      *
      * @var string
      */
@@ -53,8 +60,9 @@ class UrlGenerator implements UrlGeneratorContract
     protected $cachedRoot;
 
     /**
-     * A cached copy of the URL schema for the current request.
+     * A cached copy of the URL scheme for the current request.
      *
+     * @deprecated In 5.8, this will change to $cachedScheme
      * @var string|null
      */
     protected $cachedSchema;
@@ -106,11 +114,13 @@ class UrlGenerator implements UrlGeneratorContract
      *
      * @param  \Illuminate\Routing\RouteCollection  $routes
      * @param  \Illuminate\Http\Request  $request
+     * @param  string  $assetRoot
      * @return void
      */
-    public function __construct(RouteCollection $routes, Request $request)
+    public function __construct(RouteCollection $routes, Request $request, $assetRoot = null)
     {
         $this->routes = $routes;
+        $this->assetRoot = $assetRoot;
 
         $this->setRequest($request);
     }
@@ -229,7 +239,9 @@ class UrlGenerator implements UrlGeneratorContract
         // Once we get the root URL, we will check to see if it contains an index.php
         // file in the paths. If it does, we will remove it since it is not needed
         // for asset paths, but only for routes to endpoints in the application.
-        $root = $this->formatRoot($this->formatScheme($secure));
+        $root = $this->assetRoot
+                    ? $this->assetRoot
+                    : $this->formatRoot($this->formatScheme($secure));
 
         return $this->removeIndex($root).'/'.trim($path, '/');
     }
@@ -567,14 +579,14 @@ class UrlGenerator implements UrlGeneratorContract
     /**
      * Force the scheme for URLs.
      *
-     * @param  string  $schema
+     * @param  string  $scheme
      * @return void
      */
-    public function forceScheme($schema)
+    public function forceScheme($scheme)
     {
         $this->cachedSchema = null;
 
-        $this->forceScheme = $schema.'://';
+        $this->forceScheme = $scheme.'://';
     }
 
     /**
