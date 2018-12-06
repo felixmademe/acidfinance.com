@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Acid Finance helps you visualize your income and expenses">
+    <meta name="description" content="Acid Finance helps you by visualising your incomes and expenses, cut down unnecessary costs and save money">
     <meta name="author" content="Felix Wetell">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Acid Finance') }} - @yield( 'title' )</title>
