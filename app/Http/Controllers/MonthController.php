@@ -46,7 +46,7 @@ class MonthController extends Controller
             ->limit( 3 )
             ->get();
 
-        return view( 'index' )
+        return view( 'dashboard' )
             ->with( 'incomes', $incomes )
             ->with( 'expenses', $expenses )
             ->with( 'currentMonth', $currentMonth );

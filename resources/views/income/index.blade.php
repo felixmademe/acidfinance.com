@@ -45,7 +45,7 @@
                     <button type="submit" name="addIncome" class="btn btn-primary">Add income</button>
                 </form>
                 <hr>
-                <a class="btn btn-blue" href="{{ route( 'index' ) }}">Overview</a>
+                <a class="btn btn-blue" href="{{ route( 'dashboard' ) }}">Dashboard</a>
             </div>
 
 

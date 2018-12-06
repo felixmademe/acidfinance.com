@@ -45,7 +45,7 @@
         </ul>
     @endforeach
     <div class="text-center">
-        <a class="btn btn-blue" href="{{ route( 'index' ) }}">Overview</a>
+        <a class="btn btn-blue" href="{{ route( 'dashboard' ) }}">Dashboard</a>
     </div>
 
 @endauth

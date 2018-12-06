@@ -13,7 +13,12 @@
 
 Auth::routes();
 
-Route::get( '/', 'MonthController@index' )->name( 'index' )->middleware( 'auth' );
+Route::get( '/', function()
+{
+    return view( 'index' );
+})->name( 'index' );
+
+Route::get( 'dashboard', 'MonthController@index' )->name( 'dashboard' )->middleware( 'auth' );
 Route::get( 'previous-months', 'MonthController@previous' )->name( 'previous' )->middleware( 'auth' );
 
 Route::get( 'what-is-simple-finance', function ()

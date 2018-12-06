@@ -1,5 +1,6 @@
 @extends( 'layouts.app' )
 @section( 'content' )
+@section( 'title', "Dashboard" )
 
     @if( session()->has( 'success' ) )
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -18,7 +19,6 @@
     @endif
 
     @auth
-        @section( 'title', "Overview" )
         <div class="text-center">
             <h4>{{ date( 'F' ) }}</h4>
         </div>
@@ -98,8 +98,6 @@
             <p>Want to see past months? Click the button below to find out</p>
             <a href="{{ route( 'previous' ) }}" class="btn btn-blue">Previous months</a>
         </div>
-    @else
-
     @endauth
 
 @endsection

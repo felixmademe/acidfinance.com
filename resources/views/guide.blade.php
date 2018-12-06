@@ -19,7 +19,7 @@
         <li>Click Edit on the new Income/Expense</li>
         <li>Enter the necessary info</li>
         <li>Let the web app crunch the numbers</li>
-        <li>Voila, the result should be displayed on the <a href="{{ url( '/' ) }}">overview</a></li>
+        <li>Voila, the result should be displayed on the <a href="{{ route( 'dashboard' ) }}">dashboard</a></li>
     </ol>
 
 @endsection
