@@ -16,7 +16,7 @@
             <!-- Slides -->
             <div class="swiper-slide text-center">
                 <a href="{{ url( 'https://orgotech.com' ) }}">
-                    <img src="{{ asset( '/img/orgotech.svg' ) }}" alt="Orgo Tech logo" data-toggle="tooltip" data-placement="top" title="Orgo Webb">
+                    <img src="{{ asset( '/img/orgotech.svg' ) }}" alt="Orgo Tech logo" data-toggle="tooltip" data-placement="top" title="Orgo Tech">
                 </a>
             </div>
             <div class="swiper-slide text-center">
