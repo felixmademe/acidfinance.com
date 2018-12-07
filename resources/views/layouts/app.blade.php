@@ -20,7 +20,7 @@
 <body>
     <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
         <a class="navbar-brand" href="/">
-        	<img src="{{ asset( '/img/acid-logo.svg' ) }}" alt="">
+        	<img src="{{ asset( '/img/acid-logo.svg' ) }}" alt="Acid Finance logo">
         </a>
         <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
             <span class="dark-blue-text">
@@ -99,7 +99,7 @@
             <hr>
             <div class="row p-4">
                 <div class="col-md-3 d-none d-md-block">
-                    <img src="{{ asset( '/img/logo.svg' ) }}" alt="">
+                    <img src="{{ asset( '/img/acid-logo.svg' ) }}" alt="Acid Finance logo">
                 </div>
                 <div class="col-md-3">
                     <h4>Acid Finance</h4>
