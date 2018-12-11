@@ -1,18 +1,56 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+
+    <!-- COMMON TAGS -->
+    <meta charset="utf-8">
+    <!-- Search Engine -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Finance, Save, Money, Save Money, Calculate, Acid Finance, Acid">
     <meta name="description" content="Acid Finance helps you by visualising your incomes and expenses, cut down unnecessary costs and save money">
-    <meta name="author" content="Felix Wetell">
+    <meta name="subject" content="Finance">
+    <meta name="image" content="https://acidfinance.com/img/acid-logo.svg">
+    <meta name="copyright"content="Acid Finance">
+    <meta name="language" content="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <meta name="robots" content="index, follow">
+    <meta name="Classification" content="Business">
+    <meta name="author" content="Felix Wetell, felix.wetell@gmail.com">
+    <meta name="designer" content="Felix Wetell">
+    <meta name="copyright" content="Felix Wetell">
+    <meta name="reply-to" content="hello@acidfinance.com">
+    <meta name="owner" content="Felix Wetell">
+    <meta name="url" content="http://www.acidfinance.com">
+    <meta name="identifier-URL" content="http://www.acidfinance.com">
+    <meta name="coverage" content="Worldwide">
+    <meta name="distribution" content="Global">
+    <meta name="rating" content="General">
+    <meta name="revisit-after" content="7 days">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="Acid Finance">
+    <meta itemprop="description" content="Acid Finance helps you by visualising your incomes and expenses, cut down unnecessary costs and save money">
+    <meta itemprop="image" content="https://acidfinance.com/img/acid-logo.svg">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="Acid Finance helps you by visualising your incomes and expenses, cut down unnecessary costs and save money">
+    <meta name="twitter:title" content="Acid Finance">
+    <meta name="twitter:description" content="Acid Finance helps you by visualising your incomes and expenses, cut down unnecessary costs and save money">
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name="og:title" content="Acid Finance">
+    <meta name="og:description" content="Acid Finance helps you by visualising your incomes and expenses, cut down unnecessary costs and save money">
+    <meta name="og:image" content="https://acidfinance.com/img/acid-logo.svg">
+    <meta name="og:url" content="https://acidfinance.com">
+    <meta name="og:site_name" content="Acid Finance">
+    <meta name="og:locale" content="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <meta name="og:type" content="website">
+
     <title>{{ config('app.name', 'Acid Finance') }} - @yield( 'title' )</title>
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="{{ asset( '/css/main.min.css' ) }}">
     <link rel="icon" href="{{ asset( '/img/acid-icon.ico' ) }}">
@@ -40,6 +78,7 @@
 					<a class="nav-link" href="{{ route( 'guide' ) }}">How to use</a>
 				</li>
             </ul>
+            <hr class="d-block d-md-none">
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @auth
