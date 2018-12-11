@@ -10,7 +10,7 @@
     <meta name="keywords" content="Finance, Save, Money, Save Money, Calculate, Acid Finance, Acid">
     <meta name="description" content="Acid Finance helps you by visualising your incomes and expenses, cut down unnecessary costs and save money">
     <meta name="subject" content="Finance">
-    <meta name="image" content="https://acidfinance.com/img/acid-logo.svg">
+    <meta name="image" content="https://acidfinance.com/img/acid-logo.png">
     <meta name="copyright"content="Acid Finance">
     <meta name="language" content="{{ str_replace('_', '-', app()->getLocale()) }}">
     <meta name="robots" content="index, follow">
@@ -30,7 +30,7 @@
     <!-- Schema.org for Google -->
     <meta itemprop="name" content="Acid Finance">
     <meta itemprop="description" content="Acid Finance helps you by visualising your incomes and expenses, cut down unnecessary costs and save money">
-    <meta itemprop="image" content="https://acidfinance.com/img/acid-logo.svg">
+    <meta itemprop="image" content="https://acidfinance.com/img/acid-logo.png">
     <!-- Twitter -->
     <meta name="twitter:card" content="Acid Finance helps you by visualising your incomes and expenses, cut down unnecessary costs and save money">
     <meta name="twitter:title" content="Acid Finance">
@@ -38,7 +38,7 @@
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
     <meta name="og:title" content="Acid Finance">
     <meta name="og:description" content="Acid Finance helps you by visualising your incomes and expenses, cut down unnecessary costs and save money">
-    <meta name="og:image" content="https://acidfinance.com/img/acid-logo.svg">
+    <meta name="og:image" content="https://acidfinance.com/img/acid-logo.png">
     <meta name="og:url" content="https://acidfinance.com">
     <meta name="og:site_name" content="Acid Finance">
     <meta name="og:locale" content="{{ str_replace('_', '-', app()->getLocale()) }}">
