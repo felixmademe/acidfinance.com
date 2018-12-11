@@ -84,11 +84,12 @@
         <div class="container mt-5 py-5">
             <div class="row justify-content-center">
                 <div class="col-md-10">
-                    <div class="text-center">
+                    <div class="text-center my-4">
                         <h1>@yield( 'title' )</h1>
                     </div>
-                    <hr>
+                    <hr><br>
                     @yield( 'content' )
+                    <br>
                 </div>
             </div>
         </div>
@@ -132,6 +133,10 @@
             <div class="text-center">
                 <small>
                     by <a href="https://felixmade.me">Felix Wetell</a>
+                </small>
+                <br>
+                <small>
+                    Copyright © {{ date( 'Y' ) }} Acid Finance
                 </small>
             </div>
         </div>
