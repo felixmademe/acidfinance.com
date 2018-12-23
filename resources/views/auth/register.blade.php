@@ -13,9 +13,10 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
+                <label class="text-muted" for="username" class="">Username</label>
                 <input id="username" type="text" placeholder="Username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" required autofocus>
 
-                @if ($errors->has('username'))
+                @if( $errors->has( 'username' ) )
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('username') }}</strong>
                     </span>
@@ -25,6 +26,7 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
+                <label class="text-muted" for="email" class="">E-Mail Address</label>
                 <input id="email" type="email" placeholder="E-Mail Address" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required>
 
                 @if ($errors->has('email'))
@@ -37,7 +39,9 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
+                <label class="text-muted" for="password" class="">Password</label>
                 <input id="password" type="password" placeholder="Password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
                 @if ($errors->has('password'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('password') }}</strong>
@@ -48,6 +52,7 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
+                <label class="text-muted" for="password-confirm" class="">Confirm Password</label>
                 <input id="password-confirm" type="password" placeholder="Confirm Password" class="form-control" name="password_confirmation" required>
             </div>
         </div>

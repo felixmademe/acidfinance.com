@@ -9,11 +9,16 @@
         </div>
     @endif
 
+    <p class="text-center">
+        Enter your email address to send a reset password link
+    </p>
+
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
+                <label class="text-muted" for="email" class="">E-Mail Address</label>
                 <input id="email" type="email" placeholder="E-Mail Address" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                 @if ($errors->has('email'))
@@ -27,7 +32,7 @@
         <div class="form-group row mb-0">
             <div class="col-lg-8 offset-lg-2">
                 <button type="submit" class="btn btn-primary">
-                    {{ __('Send Password Reset Link') }}
+                    Send Password Reset Link
                 </button>
             </div>
         </div>
