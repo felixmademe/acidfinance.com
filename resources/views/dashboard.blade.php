@@ -32,7 +32,7 @@
                         <ul class="list-group">
                             <li class="list-group-item border-0">
                                 <span class="blue-text">
-                                    {{ Auth::user()->currentMonthTotalSum( $currentMonth ) }}kr
+                                    {{ Auth::user()->currentMonthTotalSum( $currentYear, $currentMonth ) }}kr
                                 </span>
                                 left this month
                             </li>

@@ -41,34 +41,37 @@ class User extends Authenticatable
         return $this->hasMany( 'App\Expense' );
     }
 
-    public function currentMonthTotalSum( $currentMonth )
+    public function currentMonthTotalSum( $currentYear, $currentMonth )
     {
         $user = Auth::user();
-
         $income = DB::table( 'incomes' )
-                    ->where( 'user_id', $user->id )
-                    ->whereMonth( 'created_at', $currentMonth )
-                    ->sum( 'amount' );
+            ->where( 'user_id', $user->id )
+            ->whereYear( 'created_at', $currentYear )
+            ->whereMonth( 'created_at', $currentMonth )
+            ->sum( 'amount' );
 
         $expense = DB::table( 'expenses' )
-                    ->where( 'user_id', $user->id )
-                    ->whereMonth( 'created_at', $currentMonth )
-                    ->sum( 'amount' );
+            ->where( 'user_id', $user->id )
+            ->whereYear( 'created_at', $currentYear )
+            ->whereMonth( 'created_at', $currentMonth )
+            ->sum( 'amount' );
 
         return $income - $expense;
     }
 
-    public function currentMonth( $table )
+    public function currentYearMonth( $table )
     {
+        $currentYear = date( 'Y' );
         $currentMonth = date( 'm' );
         $user = Auth::user();
 
-        $expenses = DB::table( $table )
-                    ->where( 'user_id', $user->id )
-                    ->whereMonth( 'created_at', $currentMonth )
-                    ->get();
+        $transactions = DB::table( $table )
+            ->where( 'user_id', $user->id )
+            ->whereYear( 'created_at', $currentYear )
+            ->whereMonth( 'created_at', $currentMonth )
+            ->get();
 
-        return $expenses;
+        return $transactions;
     }
 
     protected $table = 'users';

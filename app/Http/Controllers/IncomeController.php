@@ -20,7 +20,9 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        $incomes = Auth::user()->currentMonth( 'incomes' );
+        $incomes = Auth::user()
+            ->currentYearMonth( 'incomes' );
+            
         return view( 'income.index' )
             ->with( 'incomes', $incomes );
     }

@@ -32,15 +32,18 @@ class MonthController extends Controller
      */
     public function index()
     {
+        $currentYear = date( 'Y' );
         $currentMonth = date( 'm' );
         $user = Auth::user();
         $incomes = Income::where( 'user_id', $user->id )
+            ->whereYear( 'created_at', $currentYear )
             ->whereMonth( 'created_at', $currentMonth )
             ->orderBy( 'amount', 'desc' )
             ->limit( 3 )
             ->get();
 
         $expenses = Expense::where( 'user_id', $user->id )
+            ->whereYear( 'created_at', $currentYear )
             ->whereMonth( 'created_at', $currentMonth )
             ->orderBy( 'amount', 'desc' )
             ->limit( 3 )
@@ -49,18 +52,21 @@ class MonthController extends Controller
         return view( 'dashboard' )
             ->with( 'incomes', $incomes )
             ->with( 'expenses', $expenses )
+            ->with( 'currentYear', $currentYear )
             ->with( 'currentMonth', $currentMonth );
     }
 
     public function previous()
     {
-        $user = Auth::user();
+        $user = User::with( 'incomes', 'expenses' )->find( Auth::user()->id );
         $incomes = $user->incomes;
         $expenses = $user->expenses;
 
-        $transactions = $incomes->merge( $expenses );
+        $transactions = collect( $incomes );
+        $mergedTransactions = $transactions->merge( $expenses );
+        $mergedTransactions->all();
 
-        $transactionsByYearMonth = $transactions->groupBy([
+        $transactionsByYearMonth = $mergedTransactions->groupBy([
             function( $date )
                 {
                     return Carbon::parse( $date->created_at )->format( 'Y' );

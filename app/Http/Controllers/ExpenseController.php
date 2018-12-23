@@ -20,8 +20,11 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Auth::user()->currentMonth( 'expenses' );
-        return view( 'expense.index' )->with( 'expenses', $expenses );
+        $expenses = Auth::user()
+            ->currentYearMonth( 'expenses' );
+
+        return view( 'expense.index' )
+            ->with( 'expenses', $expenses );
     }
 
     /**
@@ -52,7 +55,8 @@ class ExpenseController extends Controller
 
         Session::flash( 'success', "Expense added" );
         $message = View::make( 'partials/flash-messages' );
-        $expenseView = View::make( 'partials/expense-row' )->with( 'expense', $expense );
+        $expenseView = View::make( 'partials/expense-row' )
+            ->with( 'expense', $expense );
 
         return response()->json(
         [

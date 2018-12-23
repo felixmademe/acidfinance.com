@@ -9,7 +9,17 @@
         <ul class="list-group list-group-flush">
             @foreach( $months as $month => $transactions )
                 <li class="list-group-item border-0">
-                    <h4>{{ $month }} </h4>
+                    <h4>
+                        {{ $month }} -
+                        @php
+                            $total = Auth::user()->currentMonthTotalSum( $year, Carbon\Carbon::parse( $month )->month )
+                        @endphp
+                            @if( $total < 0 )
+                                <span class="red-text">{{ $total }}kr</span>
+                            @else
+                                <span class="green-text">{{ $total }}kr</span>
+                            @endif
+                    </h4>
                     <table class="table table-hover col-12">
                         <thead>
                             <tr>
