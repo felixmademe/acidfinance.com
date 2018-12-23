@@ -27,7 +27,7 @@
                                 {{ 'No' }}
                             @endif
                         </td>
-                        <td class="green-text">{{ $expense->amount }}kr</td>
+                        <td class="red-text">-{{ $expense->amount }}kr</td>
                         <td class="">
                             <a href="{{ route( 'expense.edit.{id}', [ 'id' => $expense->id ] ) }}" class="blue-text">Edit </a>
                              /
