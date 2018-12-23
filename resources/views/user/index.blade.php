@@ -46,6 +46,9 @@
         </div>
         <div class="tab-pane fade" id="email" role="tabpanel" aria-labelledby="email-tab">
             <h4 class="text-center">Change e-mail address</h4>
+            <p class="text-center">
+                Password is required to change the email to your profile
+            </p>
             <form method="post" action="{{ route( 'user.edit' ) }}" id="changeEmail">
                 @csrf
                 {{ method_field( 'patch' ) }}
@@ -63,6 +66,19 @@
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <label class="text-muted" for="emailPassword" class="">Password</label>
+                        <input id="emailPassword" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
+
+                        @if ($errors->has( 'emailPassword' ))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first( 'emailPassword' ) }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
                 <div class="form-group row mb-0">
                     <div class="col-lg-8 offset-lg-2">
                         <button type="submit" class="btn btn-primary ml-0">
@@ -75,19 +91,46 @@
         <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
             <h4 class="text-center">Change password</h4>
             <p class="text-center">
-                Password is required to change the email to your profile
+                To change password you must first enter your old password, then type in the new,
+                and confirm the new password
             </p>
             <form method="post" action="{{ route( 'user.edit' ) }}" id="changePassword">
                 @csrf
 
                 <div class="form-group row">
                     <div class="col-lg-8 offset-lg-2">
-                        <label class="text-muted" for="password" class="">Password</label>
+                        <label class="text-muted" for="oldPassword" class="">Current Password</label>
+                        <input id="oldPassword" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
+
+                        @if ($errors->has( 'oldPassword' ))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first( 'oldPassword' ) }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <label class="text-muted" for="password" class="">New Password</label>
                         <input id="password" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
 
                         @if ($errors->has( 'password' ))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first( 'password' ) }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <label class="text-muted" for="confirmPassword" class="">Confirm Password</label>
+                        <input id="confirmPassword" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
+
+                        @if ($errors->has( 'confirmPassword' ))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first( 'confirmPassword' ) }}</strong>
                             </span>
                         @endif
                     </div>
@@ -103,7 +146,6 @@
             </form>
         </div>
     </div>
-
 
 @endauth
 @endsection
