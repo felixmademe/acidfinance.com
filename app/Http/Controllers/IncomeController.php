@@ -22,9 +22,10 @@ class IncomeController extends Controller
     {
         $incomes = Auth::user()
             ->currentYearMonth( 'incomes' );
-            
+
         return view( 'income.index' )
             ->with( 'incomes', $incomes );
+
     }
 
     /**

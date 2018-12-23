@@ -10,7 +10,7 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
-                <label for="name" class="col-form-label text-md-right">Name</label>
+                <label for="name" class="text-muted">Name</label>
                 <input id="name" type="text" placeholder="Name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $expense->name }}" autofocus>
                 @if ($errors->has('name'))
                     <span class="invalid-feedback" role="alert">
@@ -22,7 +22,7 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
-                <label for="category" class="col-form-label text-md-right">Category</label>
+                <label for="category" class="text-muted">Category</label>
                 {{-- <input id="category_id" type="text" placeholder="Category" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id" value="{{ $expense->category_id }}"> --}}
                 <select class="form-control" id="category_id" name="category_id">
                     @foreach ($categories as $category)
@@ -41,7 +41,7 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
-                <label for="monthly" class="col-form-label text-md-right">Monthly</label>
+                <label for="monthly" class="text-muted">Monthly</label>
                 <select class="form-control" id="monthly" name="monthly">
                     <option value="1" {{ old( 'monthly', $expense->monthly ) == 1 ? 'selected' : '' }}>Yes</option>
                     <option value="0" {{ old( 'monthly', $expense->monthly ) == 0 ? 'selected' : '' }}>No</option>
@@ -56,7 +56,7 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
-                <label for="amount" class="col-form-label text-md-right">Amount (kr)</label>
+                <label for="amount" class="text-muted">Amount (kr)</label>
                 <input id="amount" type="text" placeholder="Amount" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" value="{{ $expense->amount }}">
                 @if ($errors->has('amount'))
                     <span class="invalid-feedback" role="alert">
