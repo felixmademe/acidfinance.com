@@ -21,7 +21,8 @@ class IncomeController extends Controller
     public function index()
     {
         $incomes = Auth::user()->currentMonth( 'incomes' );
-        return view( 'income.index' )->with( 'incomes', $incomes );
+        return view( 'income.index' )
+            ->with( 'incomes', $incomes );
     }
 
     /**
@@ -52,7 +53,8 @@ class IncomeController extends Controller
 
         Session::flash( 'success', "Income added" );
         $message = View::make( 'partials/flash-messages' );
-        $incomeView = View::make( 'partials/income-row' )->with( 'income', $income );
+        $incomeView = View::make( 'partials/income-row' )
+            ->with( 'income', $income );
 
         return response()->json(
         [
@@ -83,8 +85,8 @@ class IncomeController extends Controller
         $income = Income::find( $id );
 
         return view( 'income.edit' )
-               ->with( 'income', $income  )
-               ->with( 'categories', IncomeCategory::get() );;
+            ->with( 'income', $income  )
+            ->with( 'categories', IncomeCategory::get() );;
     }
 
     /**
@@ -113,7 +115,8 @@ class IncomeController extends Controller
             $income->amount = $request->amount;
             $income->save();
 
-            return redirect( 'income' )->with( 'success', [ $income->name, 'have been updated!' ]  );
+            return redirect( 'income' )
+                ->with( 'success', [ $income->name, 'have been updated!' ]  );
         }
     }
 

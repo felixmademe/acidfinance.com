@@ -44,6 +44,7 @@
             @endforeach
         </ul>
     @endforeach
+    <hr>
     <div class="text-center">
         <a class="btn btn-blue" href="{{ route( 'dashboard' ) }}">Dashboard</a>
     </div>

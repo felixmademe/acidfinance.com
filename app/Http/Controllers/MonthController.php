@@ -71,7 +71,6 @@ class MonthController extends Controller
                 }
         ]);
 
-
         return view( 'previous' )
             ->with( 'transactionsByYearMonth', $transactionsByYearMonth )
             ->with( 'incomes', $incomes )
