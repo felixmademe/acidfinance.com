@@ -65,12 +65,22 @@ class User extends Authenticatable
         $currentMonth = date( 'm' );
         $user = Auth::user();
 
-        $transactions = DB::table( $table )
-            ->where( 'user_id', $user->id )
-            ->whereYear( 'created_at', $currentYear )
-            ->whereMonth( 'created_at', $currentMonth )
-            ->get();
-
+        if( $table == "incomes" )
+        {
+            $transactions = Income::with( 'category' )
+                ->where( 'user_id', $user->id )
+                ->whereYear( 'created_at', $currentYear )
+                ->whereMonth( 'created_at', $currentMonth )
+                ->get();
+        }
+        else
+        {
+            $transactions = Expense::with( 'category' )
+                ->where( 'user_id', $user->id )
+                ->whereYear( 'created_at', $currentYear )
+                ->whereMonth( 'created_at', $currentMonth )
+                ->get();
+        }
         return $transactions;
     }
 
