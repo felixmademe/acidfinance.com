@@ -48,7 +48,7 @@
                         <hr>
                         <ul class="list-group">
                             <li class="list-group-item border-0">
-                                Total - <span class="green-text">{{ $incomes->sum( 'amount' ) }}kr</span>
+                                Total - <span class="green-text">{{ Auth::user()->currentYearMonth( 'incomes' )->sum( 'amount' ) }}kr</span>
                             </li>
                         </ul>
                         <hr>
@@ -74,7 +74,7 @@
                         <hr>
                         <ul class="list-group">
                             <li class="list-group-item border-0">
-                                Total - <span class="red-text">{{ $expenses->sum( 'amount' ) }}kr</span>
+                                Total - <span class="red-text">{{ Auth::user()->currentYearMonth( 'expenses' )->sum( 'amount' ) }}kr</span>
                             </li>
                         </ul>
                         <hr>
