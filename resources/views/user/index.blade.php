@@ -13,6 +13,9 @@
         <li class="nav-item">
             <a class="nav-link" href="#password" id="password-tab" data-toggle="tab" role="tab" aria-controls="password" aria-selected="true">Password</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#settings" id="settings-tab" data-toggle="tab" role="tab" aria-controls="settings" aria-selected="true">Settings</a>
+        </li>
     </ul>
     <br>
     <div class="tab-content">
@@ -45,10 +48,12 @@
             </form>
         </div>
         <div class="tab-pane fade" id="email" role="tabpanel" aria-labelledby="email-tab">
-            <h4 class="text-center">Change e-mail address</h4>
-            <p class="text-center">
-                Password is required to change the email to your profile
-            </p>
+            <div class="text-center">
+                <h4>Change e-mail address</h4>
+                <p>
+                    Password is required to change the email to your profile
+                </p>
+            </div>
             <form method="post" action="{{ route( 'user.edit' ) }}" id="changeEmail">
                 @csrf
                 {{ method_field( 'patch' ) }}
@@ -89,11 +94,13 @@
             </form>
         </div>
         <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
-            <h4 class="text-center">Change password</h4>
-            <p class="text-center">
-                To change password you must first enter your old password, then type in the new,
-                and confirm the new password
-            </p>
+            <div class="text-center">
+                <h4 class="text-center">Change password</h4>
+                <p class="text-center">
+                    To change password you must first enter your old password, then type in the new,
+                    and confirm the new password
+                </p>
+            </div>
             <form method="post" action="{{ route( 'user.edit' ) }}" id="changePassword">
                 @csrf
 
@@ -140,6 +147,36 @@
                     <div class="col-lg-8 offset-lg-2">
                         <button type="submit" class="btn btn-primary ml-0">
                             Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+            <div class="text-center">
+                <h4>Settings</h4>
+                <p>Other settings to handle your account</p>
+            </div>
+            <hr>
+            <form method="post" action="{{ route( 'user.edit' ) }}" id="deleteUser">
+                {{ method_field( 'delete' ) }}
+                <div class="form-group row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <p>To delete the profile you must enter your password</p>
+                        <label class="text-muted" for="deletePassword" class="">Password</label>
+                        <input id="deletePassword" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
+
+                        @if ($errors->has( 'deletePassword' ))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first( 'deletePassword' ) }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group row mb-0">
+                    <div class="col-lg-8 offset-lg-2">
+                        <button type="submit" class="btn btn-danger ml-0">
+                            Delete
                         </button>
                     </div>
                 </div>
