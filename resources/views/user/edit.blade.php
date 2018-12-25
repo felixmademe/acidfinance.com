@@ -21,9 +21,9 @@
     <div class="tab-content">
         <div class="tab-pane show active" id="username" role="tabpanel" aria-labelledby="username-tab">
             <h4 class="text-center">Change username</h4>
-            <form method="post" action="{{ 'user.' . Auth::user()->id }}" id="changeUsername">
+            <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="changeUsername">
                 @csrf
-                {{ method_field( 'update' ) }}
+                {{ method_field( 'put' ) }}
 
                 <div class="form-group row">
                     <div class="col-lg-8 offset-lg-2">
@@ -54,7 +54,7 @@
                     Password is required to change the email to your profile
                 </p>
             </div>
-            <form method="post" action="{{ 'user.' . Auth::user()->id }}" id="changeEmail">
+            <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="changeEmail">
                 @csrf
                 {{ method_field( 'update' ) }}
 
@@ -95,13 +95,13 @@
         </div>
         <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
             <div class="text-center">
-                <h4 class="text-center">Change password</h4>
-                <p class="text-center">
+                <h4>Change password</h4>
+                <p>
                     To change password you must first enter your old password, then type in the new,
                     and confirm the new password
                 </p>
             </div>
-            <form method="post" action="{{ 'user.' . Auth::user()->id }}" id="changePassword">
+            <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="changePassword">
                 @csrf
                 {{ method_field( 'update' ) }}
 
@@ -159,7 +159,7 @@
                 <p>Other settings to handle your account</p>
             </div>
             <hr>
-            <form method="post" action="{{ 'user.' . Auth::user()->id }}" id="deleteUser">
+            <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="deleteUser">
                 {{ method_field( 'delete' ) }}
 
                 <div class="form-group row">

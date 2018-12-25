@@ -70,9 +70,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( Request $request, $id )
     {
         $user = User::find( $id );
+        $this->authorize( 'update', Auth::user(), $user );
 
         if( $request->has( 'username' ) )
         {
@@ -81,27 +82,27 @@ class UserController extends Controller
             ]);
             $user->username = $request->username;
         }
-        elseif( $request->has( 'email' ) )
-        {
-            $request->validate([
-                'email'    => 'required|email|unique|max:255',
-                'password' => 'required|confirmed|min:6'
-
-            ]);
-            $user->email = $request->email;
-        }
-        elseif( $request->has( 'password' ) )
-        {
-            $request->validate([
-                'currentPassword' => 'required',
-                'password'        => 'required|confirmed|min:6|same:password',
-                'confirmPassword' => 'required|same:password',
-            ]);
-            $user->password = Hash::make( $request->password );
-        }
+        // elseif( $request->has( 'email' ) )
+        // {
+        //     $request->validate([
+        //         'email'    => 'required|email|unique|max:255',
+        //         'password' => 'required|confirmed|min:6'
+        //
+        //     ]);
+        //     $user->email = $request->email;
+        // }
+        // elseif( $request->has( 'password' ) )
+        // {
+        //     $request->validate([
+        //         'currentPassword' => 'required',
+        //         'password'        => 'required|confirmed|min:6|same:password',
+        //         'confirmPassword' => 'required|same:password',
+        //     ]);
+        //     $user->password = Hash::make( $request->password );
+        // }
         $user->save();
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -113,7 +114,7 @@ class UserController extends Controller
     public function destroy( $id )
     {
         $user = Auth::user();
-
+        $this->authorize( 'delete', Auth::user(), $user );
         $user->destroy();
     }
 }

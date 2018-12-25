@@ -3,10 +3,9 @@
 @section( 'content' )
 
     <h4 class="text-center">{{ $expense->name }}</h4>
-    <form method="POST" action="{{ route( 'expense.update.{id}', [ 'id' => $expense->id ] ) }}">
+    <form method="POST" action="{{ 'expense/' . $expense->id }}">
         @csrf
-        <input name="_method" type="hidden" value="PUT">
-        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+        {{ method_field( 'update' ) }}
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">

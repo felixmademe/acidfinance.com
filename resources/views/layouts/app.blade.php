@@ -91,7 +91,7 @@
                             <a class="dropdown-item" href="{{ route( 'dashboard' ) }}">
                                 {{ __( 'Dashboard' ) }}
                             </a>
-                            <a class="dropdown-item" href="{{ 'user/' . Auth::user()->id . '/edit' }}">
+                            <a class="dropdown-item" href="{{ '/user/' . Auth::user()->id . '/edit' }}">
                                 {{ __( 'Profile' ) }}
                             </a>
                             <a class="dropdown-item" href="{{ route( 'logout' ) }}"
