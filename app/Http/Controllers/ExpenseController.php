@@ -34,7 +34,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        abort( 404 );
     }
 
     /**

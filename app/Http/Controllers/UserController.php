@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view( 'user.index' );
     }
 
     /**
@@ -60,20 +60,7 @@ class UserController extends Controller
      */
     public function edit( Request $request )
     {
-        $request->validate([
-            'username' => 'string|max:255',
-            'email'    => 'required|email|unique|max:255',
-            'password' => 'required|confirmed|min:6'
-        ]);
-
-        $user = Auth::user();
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->password = Hash::make( $request->password );
-
-        $user->save();
-
-        return redirect()->back();
+        return view( 'user.edit' );
     }
 
     /**
@@ -85,7 +72,36 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find( $id );
+
+        if( $request->has( 'username' ) )
+        {
+            $request->validate([
+                'username' => 'string|max:255',
+            ]);
+            $user->username = $request->username;
+        }
+        elseif( $request->has( 'email' ) )
+        {
+            $request->validate([
+                'email'    => 'required|email|unique|max:255',
+                'password' => 'required|confirmed|min:6'
+
+            ]);
+            $user->email = $request->email;
+        }
+        elseif( $request->has( 'password' ) )
+        {
+            $request->validate([
+                'currentPassword' => 'required',
+                'password'        => 'required|confirmed|min:6|same:password',
+                'confirmPassword' => 'required|same:password',
+            ]);
+            $user->password = Hash::make( $request->password );
+        }
+        $user->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -94,8 +110,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( $id )
     {
-        //
+        $user = Auth::user();
+
+        $user->destroy();
     }
 }
