@@ -16,29 +16,44 @@ Auth::routes( [ 'verify' => true ] );
 Route::get( '/', function()
 {
     return view( 'index' );
-})->name( 'index' );
+} )->name( 'index' );
 
 Route::get( 'what-is-simple-finance', function ()
 {
     return view( 'about' );
-})->name( 'about' );
+} )->name( 'about' );
 
 Route::get( 'how-to-use', function ()
 {
     return view( 'guide' );
-})->name( 'guide' );
+} )->name( 'guide' );
 
 Route::get( 'privacy-policy', function ()
 {
     return view( 'privacy' );
-})->name( 'privacy' );
+} )->name( 'privacy' );
+
+Route::get( 'email-verified', function()
+{
+    return view( 'email-verified' );
+} )->name( 'emailverified' );
+
+Route::get( 'verify', 'EmailVerificationController@show' );
 
 Route::group( [ 'middleware' => 'verified' ], function ()
 {
     Route::get( 'dashboard', 'MonthController@index' )->name( 'dashboard' );
     Route::get( 'previous-months', 'MonthController@previous' )->name( 'previous' );
 
+    Route::get( 'profile', 'UserController@edit' )->name( 'profile' );
     Route::resource( 'user', 'UserController' );
     Route::resource( 'income', 'IncomeController' );
     Route::resource( 'expense', 'ExpenseController' );
-});
+    Route::resource( 'emailverification', 'EmailVerificationController' );
+    // Route::resources( [
+    //     'user' => 'UserController',
+    //     'income' => 'IncomeController',
+    //     'expense' => 'ExpenseController',
+    //     'emailverification' => 'EmailVerificationController'
+    // ] );
+} );

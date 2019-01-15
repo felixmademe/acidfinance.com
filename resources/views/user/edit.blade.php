@@ -1,7 +1,6 @@
 @extends( 'layouts.app' )
 @section( 'title', 'Profile' )
 @section( 'content' )
-@auth
 
     <ul class="nav nav-tabs" id="settingsTab" role="tablist">
         <li class="nav-item">
@@ -23,7 +22,8 @@
             <h4 class="text-center">Change username</h4>
             <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="changeUsername">
                 @csrf
-                {{ method_field( 'put' ) }}
+                {{ method_field( 'patch' ) }}
+                <input type="hidden" name="type" value="username">
 
                 <div class="form-group row">
                     <div class="col-lg-8 offset-lg-2">
@@ -56,7 +56,8 @@
             </div>
             <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="changeEmail">
                 @csrf
-                {{ method_field( 'update' ) }}
+                {{ method_field( 'patch' ) }}
+                <input type="hidden" name="type" value="email">
 
                 <div class="form-group row">
                     <div class="col-lg-8 offset-lg-2">
@@ -103,16 +104,17 @@
             </div>
             <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="changePassword">
                 @csrf
-                {{ method_field( 'update' ) }}
+                {{ method_field( 'patch' ) }}
+                <input type="hidden" name="type" value="password">
 
                 <div class="form-group row">
                     <div class="col-lg-8 offset-lg-2">
-                        <label class="text-muted" for="oldPassword" class="">Current Password</label>
-                        <input id="oldPassword" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
+                        <label class="text-muted" for="currentPassword" class="">Current Password</label>
+                        <input id="currentPassword" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="currentPassword" required>
 
-                        @if ($errors->has( 'oldPassword' ))
+                        @if ($errors->has( 'currentPassword' ))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first( 'oldPassword' ) }}</strong>
+                                <strong>{{ $errors->first( 'currentPassword' ) }}</strong>
                             </span>
                         @endif
                     </div>
@@ -134,7 +136,7 @@
                 <div class="form-group row">
                     <div class="col-lg-8 offset-lg-2">
                         <label class="text-muted" for="confirmPassword" class="">Confirm Password</label>
-                        <input id="confirmPassword" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
+                        <input id="confirmPassword" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="confirmPassword" required>
 
                         @if ($errors->has( 'confirmPassword' ))
                             <span class="invalid-feedback" role="alert">
@@ -155,22 +157,55 @@
         </div>
         <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
             <div class="text-center">
-                <h4>Settings</h4>
-                <p>Other settings to handle your account</p>
+                <h4>Clear History</h4>
+                <p>Clear the history on your account</p>
             </div>
+            <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="clearHistory">
+                @csrf
+                {{ method_field( 'patch' ) }}
+                <input type="hidden" name="type" value="clearHistory">
+
+                <div class="form-group row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <label class="text-muted" for="password" class="">Password</label>
+                        <input id="password" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
+
+                        @if ($errors->has( 'password' ))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first( 'password' ) }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group row mb-0">
+                    <div class="col-lg-8 offset-lg-2">
+                        <button type="submit" class="btn btn-blue ml-0">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            </form>
             <hr>
+            <div class="text-center">
+                <h4>Delete account</h4>
+                <p>Delete your account and all of the associated data.
+                    <br>
+                    <small>This action can not be reversed. Do it at your own risk!</small>
+                </p>
+            </div>
             <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="deleteUser">
+                @csrf
                 {{ method_field( 'delete' ) }}
 
                 <div class="form-group row">
                     <div class="col-lg-8 offset-lg-2">
                         <p>To delete the profile you must enter your password</p>
-                        <label class="text-muted" for="deletePassword" class="">Password</label>
-                        <input id="deletePassword" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
+                        <label class="text-muted" for="password" class="">Password</label>
+                        <input id="password" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
 
-                        @if ($errors->has( 'deletePassword' ))
+                        @if ($errors->has( 'password' ))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first( 'deletePassword' ) }}</strong>
+                                <strong>{{ $errors->first( 'password' ) }}</strong>
                             </span>
                         @endif
                     </div>
@@ -186,5 +221,4 @@
         </div>
     </div>
 
-@endauth
 @endsection
