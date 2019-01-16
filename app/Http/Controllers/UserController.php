@@ -120,7 +120,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $request->validate( [
-            'password' => 'required'
+            'password' => 'required|string'
         ] );
         if( Hash::check( $request->password, $user->password ) )
         {

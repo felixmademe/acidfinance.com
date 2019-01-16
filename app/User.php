@@ -108,7 +108,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function updateEmail( Request $request, User $user )
     {
         $request->validate( [
-            'email'    => 'required|email|unique:users,email|max:255',
+            'email'    => 'required|string|email|unique:users,email|max:255',
             'password' => 'required',
         ] );
 
@@ -132,9 +132,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function updatePassword( Request $request, User $user )
     {
         $request->validate( [
-            'currentPassword' => 'required',
-            'password'        => 'required|min:6|different:currentPassword',
-            'confirmPassword' => 'required|same:password',
+            'currentPassword' => 'required|string',
+            'password'        => 'required|string|min:6|different:currentPassword',
+            'confirmPassword' => 'required|string|same:password',
         ] );
         if( Hash::check( $request->currentPassword, $user->password ) )
         {
@@ -150,7 +150,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function clearHistory( Request $request, User $user )
     {
         $request->validate( [
-            'password' => 'required'
+            'password' => 'required|string'
         ] );
         if( Hash::check( $request->password, $user->password ) )
         {
