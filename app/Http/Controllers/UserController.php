@@ -107,7 +107,6 @@ class UserController extends Controller
         }
         Session::flash( 'success' );
         $message = View::make( 'partials/flash-messages' );
-
         return back()->with( 'success' );
     }
 
@@ -129,8 +128,8 @@ class UserController extends Controller
 
             User::clearHistory( $request, $user );
             $user->delete();
-            $request->session->flush();
-            return view( 'index' );
+            Auth::logout();
+            Auth::logoutOtherDevices( $request->password );
         }
     }
 }
