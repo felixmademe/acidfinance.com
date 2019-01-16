@@ -46,14 +46,14 @@ Route::group( [ 'middleware' => 'verified' ], function ()
     Route::get( 'previous-months', 'MonthController@previous' )->name( 'previous' );
 
     Route::get( 'profile', 'UserController@edit' )->name( 'profile' );
-    Route::resource( 'user', 'UserController' );
-    Route::resource( 'income', 'IncomeController' );
-    Route::resource( 'expense', 'ExpenseController' );
-    Route::resource( 'emailverification', 'EmailVerificationController' );
-    // Route::resources( [
-    //     'user' => 'UserController',
-    //     'income' => 'IncomeController',
-    //     'expense' => 'ExpenseController',
-    //     'emailverification' => 'EmailVerificationController'
-    // ] );
+    // Route::resource( 'user', 'UserController' );
+    // Route::resource( 'income', 'IncomeController' );
+    // Route::resource( 'expense', 'ExpenseController' );
+    // Route::resource( 'emailverification', 'EmailVerificationController' );
+    Route::resources( [
+        'user' => 'UserController',
+        'income' => 'IncomeController',
+        'expense' => 'ExpenseController',
+        'emailverification' => 'EmailVerificationController'
+    ] );
 } );
