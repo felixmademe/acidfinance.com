@@ -23,10 +23,11 @@
                     <td>{{ $income->monthly == 1 ? 'Yes' : 'No' }}</td>
                     <td class="green-text">{{ $income->amount }}kr</td>
                     <td class="">
-                        <a href="{{ route( 'income.edit.{id}', [ 'id' => $income->id ] ) }}" class="blue-text">Edit </a>
+                        <a href="{{ url( 'income/' . $income->id . '/edit') }}" class="blue-text">Edit </a>
                          /
-                        <form class="income-form">
+                        <form method="post" action="/income/{{ $income->id }}" class="income-form">
                             @csrf
+                            {{ method_field( 'delete' ) }}
                             <input type="hidden" name="id" value="{{ $income->id }}">
                             <button type="submit" name="submit" class="no-btn p-0">
                                 <a class="red-text">Remove</a>
@@ -40,7 +41,7 @@
     <hr>
     <div class="text-center">
         <p>Missing an income? Click the button below to add more</p>
-        <form class="addIncome">
+        <form method="post" action="/income" class="addIncome">
             @csrf
             <button type="submit" name="addIncome" class="btn btn-primary">Add income</button>
         </form>

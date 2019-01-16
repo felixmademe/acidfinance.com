@@ -63,8 +63,6 @@ class ExpenseController extends Controller
             'message' => $message->render(),
             'expenseView' => $expenseView->render(),
         ], 200 );
-
-        // return $reult = [ View::make( 'partials/flash-messages' ), $expense];
     }
 
     /**
@@ -103,12 +101,15 @@ class ExpenseController extends Controller
     public function update( Request $request, $id )
     {
         $request->validate( [
+            'user_id'     => 'required|integer',
             'name'        => 'required|string',
             'category_id' => 'integer',
             'monthly'     => 'boolean',
             'amount'      => 'integer',
         ] );
 
+        if( Auth::user()->id == $request->user_id )
+        {
             $expense = Expense::find( $id );
             $expense->name = $request->name;
             $expense->category_id = $request->category_id;
@@ -117,7 +118,8 @@ class ExpenseController extends Controller
             $expense->user_id = Auth::user()->id;
             $expense->save();
 
-            return redirect( 'expense' )->with( 'success', [ $expense->name, ' have been updated!' ]  );
+            return redirect( 'expense' )
+                ->with( 'success', [ $expense->name, ' have been updated!' ]  );
         }
     }
 

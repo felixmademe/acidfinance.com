@@ -1,11 +1,12 @@
 @extends( 'layouts.app' )
-@section( 'title', 'Expense' )
+@section( 'title', 'expense' )
 @section( 'content' )
 
     <h4 class="text-center">{{ $expense->name }}</h4>
-    <form method="POST" action="{{ 'expense/' . $expense->id }}">
+    <form method="POST" action="{{ url( 'expense/' . $expense->id ) }}">
         @csrf
-        {{ method_field( 'update' ) }}
+        {{ method_field( 'patch' ) }}
+        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
@@ -22,7 +23,6 @@
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
                 <label for="category" class="text-muted">Category</label>
-                {{-- <input id="category_id" type="text" placeholder="Category" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id" value="{{ $expense->category_id }}"> --}}
                 <select class="form-control" id="category_id" name="category_id">
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}" {{ old( 'category_id', $expense->category_id ) == $category->id ? 'selected' : '' }}>
@@ -67,12 +67,11 @@
 
         <div class="form-group row mb-0">
             <div class="col-lg-8 offset-lg-2">
-                <a class="btn btn-blue" href="{{ route( 'expense.index' ) }}">Cancel</a>
+                <a class="btn btn-blue" href="{{ url( '/expense' ) }}">Cancel</a>
                 <button type="submit" class="btn btn-primary ml-0">
                     {{ __('Save') }}
                 </button>
             </div>
         </div>
     </form>
-
 @endsection

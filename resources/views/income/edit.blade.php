@@ -3,9 +3,9 @@
 @section( 'content' )
 
     <h4 class="text-center">{{ $income->name }}</h4>
-    <form method="POST" action="{{ route( 'income.update.{id}', [ 'id' => $income->id ] ) }}">
+    <form method="POST" action="{{ url( 'income/' . $income->id ) }}">
         @csrf
-        <input name="_method" type="hidden" value="PUT">
+        {{ method_field( 'patch' ) }}
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
         <div class="form-group row">
@@ -67,7 +67,7 @@
 
         <div class="form-group row mb-0">
             <div class="col-lg-8 offset-lg-2">
-                <a class="btn btn-blue" href="{{ route( 'income.index' ) }}">Cancel</a>
+                <a class="btn btn-blue" href="{{ url( '/income' ) }}">Cancel</a>
                 <button type="submit" class="btn btn-primary ml-0">
                     {{ __('Save') }}
                 </button>

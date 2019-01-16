@@ -25,7 +25,6 @@ class IncomeController extends Controller
 
         return view( 'income.index' )
             ->with( 'incomes', $incomes );
-
     }
 
     /**
@@ -35,7 +34,7 @@ class IncomeController extends Controller
      */
     public function create()
     {
-        //
+        abort( 404 );
     }
 
     /**
