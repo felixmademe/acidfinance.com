@@ -19,7 +19,10 @@
     <br>
     <div class="tab-content">
         <div class="tab-pane show active" id="username" role="tabpanel" aria-labelledby="username-tab">
-            <h4 class="text-center">Change username</h4>
+            <div class="text-center">
+                <h4>Change username</h4>
+                <p>Here you can change your username.</p>
+            </div>
             <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="changeUsername">
                 @csrf
                 {{ method_field( 'patch' ) }}
@@ -40,7 +43,7 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-lg-8 offset-lg-2">
-                        <button type="submit" class="btn btn-primary ml-0">
+                        <button type="submit" class="btn btn-blue ml-0">
                             Save
                         </button>
                     </div>
@@ -51,7 +54,7 @@
             <div class="text-center">
                 <h4>Change e-mail address</h4>
                 <p>
-                    Password is required to change the email to your profile
+                    Password is required to change the email to your profile.
                 </p>
             </div>
             <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="changeEmail">
@@ -87,7 +90,7 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-lg-8 offset-lg-2">
-                        <button type="submit" class="btn btn-primary ml-0">
+                        <button type="submit" class="btn btn-blue ml-0">
                             Save
                         </button>
                     </div>
@@ -98,8 +101,9 @@
             <div class="text-center">
                 <h4>Change password</h4>
                 <p>
-                    To change password you must first enter your old password, then type in the new,
-                    and confirm the new password
+                    To change your password you must first enter your current password,
+                    <br>
+                    then type in the new, and confirm the new password.
                 </p>
             </div>
             <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="changePassword">
@@ -148,7 +152,7 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-lg-8 offset-lg-2">
-                        <button type="submit" class="btn btn-primary ml-0">
+                        <button type="submit" class="btn btn-blue ml-0">
                             Save
                         </button>
                     </div>
@@ -190,6 +194,8 @@
                 <h4>Delete account</h4>
                 <p>Delete your account and all of the associated data.
                     <br>
+                    To delete the profile you must provide your password.
+                    <br>
                     <small>This action can not be reversed. Do it at your own risk!</small>
                 </p>
             </div>
@@ -199,7 +205,7 @@
 
                 <div class="form-group row">
                     <div class="col-lg-8 offset-lg-2">
-                        <p>To delete the profile you must enter your password</p>
+                        <p></p>
                         <label class="text-muted" for="password" class="">Password</label>
                         <input id="password" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
 
