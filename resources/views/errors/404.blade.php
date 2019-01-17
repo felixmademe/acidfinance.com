@@ -1,11 +1,10 @@
-@extends('errors::illustrated-layout')
+@extends( 'layouts.app' )
+@section( 'title', 'Error' )
+@section( 'content' )
 
-@section('code', '404')
-@section('title', __('Page Not Found'))
+    <div class="text-center">
+        <h2>404 - Page Not Found</h2>
+        <p>Sorry, the page you are looking for could not be found.</p>
+    </div>
 
-@section('image')
-<div style="background-image: url({{ asset('/svg/404.svg') }});" class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
-</div>
 @endsection
-
-@section('message', __('Sorry, the page you are looking for could not be found.'))

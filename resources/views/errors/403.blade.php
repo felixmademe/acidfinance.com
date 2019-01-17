@@ -1,11 +1,10 @@
-@extends('errors::illustrated-layout')
+@extends( 'layouts.app' )
+@section( 'title', 'Error' )
+@section( 'content' )
 
-@section('code', '403')
-@section('title', __('Forbidden'))
-
-@section('image')
-<div style="background-image: url({{ asset('/svg/403.svg') }});" class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
+<div class="text-center">
+    <h2>403 - Forbidden</h2>
+    <p>Sorry, you are forbidden from accessing this page.</p>
 </div>
-@endsection
 
-@section('message', __($exception->getMessage() ?: __('Sorry, you are forbidden from accessing this page.')))
+@endsection

@@ -1,11 +1,10 @@
-@extends('errors::illustrated-layout')
+@extends( 'layouts.app' )
+@section( 'title', 'Error' )
+@section( 'content' )
 
-@section('code', '419')
-@section('title', __('Page Expired'))
+    <div class="text-center">
+        <h2>419 - Page Expired</h2>
+        <p>Sorry, your session has expired. Please refresh and try again.</p>
+    </div>
 
-@section('image')
-<div style="background-image: url({{ asset('/svg/403.svg') }});" class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
-</div>
 @endsection
-
-@section('message', __('Sorry, your session has expired. Please refresh and try again.'))
