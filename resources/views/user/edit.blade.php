@@ -2,6 +2,8 @@
 @section( 'title', 'Profile' )
 @section( 'content' )
 
+    <div class="flash-message"></div>
+
     <ul class="nav nav-tabs" id="settingsTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" href="#username" id="username-tab" data-toggle="tab" role="tab" aria-controls="username" aria-selected="true">Username</a>
