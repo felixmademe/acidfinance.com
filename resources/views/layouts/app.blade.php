@@ -192,5 +192,8 @@
 
     <script src="{{ asset( '/js/main.js' ) }}"></script>
     <script src="{{ asset( '/js/ajax.js' ) }}"></script>
+    <script src="{{ asset( '/js/incomeAjax.js' ) }}"></script>
+    <script src="{{ asset( '/js/expenseAjax.js' ) }}"></script>
+    <script src="{{ asset( '/js/userAjax.js' ) }}"></script>
 </body>
 </html>
