@@ -94,6 +94,50 @@ class User extends Authenticatable implements MustVerifyEmail
         return $transactions;
     }
 
+    public function copyLastMonthsTransactions()
+    {
+        $year = Carbon::now()->year;
+        $month = Carbon::now()->subMonth()->month;
+        $user = Auth::user();
+
+        if( Carbon::now()->subMonth()->isLastYear() )
+        {
+            $year = Carbon::now()->subMonth()->year;
+        }
+        
+        $incomes = Income::whereYear(
+            'created_at', '=', $year
+        )->whereMonth(
+            'created_at', '=', $month
+        )->where( 'monthly', '1' )->get();
+
+        foreach( $incomes as $income )
+        {
+            $temp = new Income;
+            $temp->name        = $income->name;
+            $temp->amount      = $income->amount;
+            $temp->monthly     = $income->monthly;
+            $temp->user_id     = $income->user_id;
+            $temp->category_id = $income->category_id;
+        }
+
+        $expenses = Expense::whereYear(
+            'created_at', '=', $year
+        )->whereMonth(
+            'created_at', '=', $month
+        )->where( 'monthly', '1' )->get();
+
+        foreach( $expenses as $expense )
+        {
+            $temp = new Expense;
+            $temp->name        = $expense->name;
+            $temp->amount      = $expense->amount;
+            $temp->monthly     = $expense->monthly;
+            $temp->user_id     = $expense->user_id;
+            $temp->category_id = $expense->category_id;
+        }
+    }
+
     public static function updateUsername( Request $request, $user )
     {
         $request->validate( [
