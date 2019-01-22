@@ -2,6 +2,9 @@
 
 namespace App\Console;
 
+use App\User;
+use App\Income;
+use App\Expense;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,8 +27,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->call( function()
+        {
+            $users = User::get();
+
+            foreach( $users as $user )
+            {
+                $user->copyLastMonthsTransactions();
+            }
+
+        } )->monthly( 1, '00:00' )->timezone( 'Europe/Stockholm' );
     }
 
     /**
