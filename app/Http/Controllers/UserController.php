@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Session;
-use View;
-
 use Auth;
+use View;
+use Session;
+
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -101,13 +101,18 @@ class UserController extends Controller
                 break;
         }
 
-        if ( !$result[ 'success' ] )
+        if ( !isset( $result[ 'success' ] ) )
         {
-            abort( '403' );
+            return back()->with( 'error', 'Method not allowed.' );
         }
+
         Session::flash( 'success' );
         $message = View::make( 'partials/flash-messages' );
-        return back()->with( 'success' );
+        return response()->json(
+        [
+            'message' => $message->render(),
+            'result' => $result[ 'result' ],
+        ], 200 );
     }
 
     /**
@@ -119,17 +124,26 @@ class UserController extends Controller
     public function destroy( Request $request, $id )
     {
         $user = Auth::user();
-        $request->validate( [
-            'password' => 'required|string'
-        ] );
-        if( Hash::check( $request->password, $user->password ) )
-        {
-            $this->authorize( 'delete', Auth::user(), $user );
+        $this->authorize( 'delete', Auth::user(), $user );
 
+        $request->validate( [
+            'deletePassword' => 'required|string'
+        ] );
+        $password = $request->deletePassword;
+
+        if( Hash::check( $password, $user->password ) )
+        {
             User::clearHistory( $request, $user );
             $user->delete();
             Auth::logout();
-            Auth::logoutOtherDevices( $request->password );
+            Auth::logoutOtherDevices( $password );
+
+            Session::flash( 'success' );
+            $message = View::make( 'partials/flash-messages' );
+            return response()->json(
+            [
+                'message' => $message->render(),
+            ], 200 );
         }
     }
 }

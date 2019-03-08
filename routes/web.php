@@ -33,23 +33,14 @@ Route::get( 'privacy-policy', function ()
     return view( 'privacy' );
 } )->name( 'privacy' );
 
-Route::get( 'email-verified', function()
-{
-    return view( 'email-verified' );
-} )->name( 'emailverified' );
-
 Route::get( 'verify', 'EmailVerificationController@show' );
 
 Route::group( [ 'middleware' => 'verified' ], function ()
 {
+    Route::get( 'profile', 'UserController@edit' )->name( 'profile' );
     Route::get( 'dashboard', 'MonthController@index' )->name( 'dashboard' );
     Route::get( 'previous-months', 'MonthController@previous' )->name( 'previous' );
 
-    Route::get( 'profile', 'UserController@edit' )->name( 'profile' );
-    // Route::resource( 'user', 'UserController' );
-    // Route::resource( 'income', 'IncomeController' );
-    // Route::resource( 'expense', 'ExpenseController' );
-    // Route::resource( 'emailverification', 'EmailVerificationController' );
     Route::resources( [
         'user' => 'UserController',
         'income' => 'IncomeController',

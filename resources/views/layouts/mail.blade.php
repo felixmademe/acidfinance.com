@@ -5,7 +5,7 @@
 
     </head>
     <body>
-        <h1>Mail</h1>
+        <h1>Hello {{ $user }}</h1>
         @yield( 'content' )
     </body>
 </html>

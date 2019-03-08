@@ -28,6 +28,7 @@
             <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="changeUsername">
                 @csrf
                 {{ method_field( 'patch' ) }}
+                <input type="hidden" name="id" value="{{ Auth::user()->id }}">
                 <input type="hidden" name="type" value="username">
 
                 <div class="form-group row">
@@ -80,7 +81,7 @@
                 <div class="form-group row">
                     <div class="col-lg-8 offset-lg-2">
                         <label class="text-muted" for="emailPassword" class="">Password</label>
-                        <input id="emailPassword" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
+                        <input id="emailPassword" type="password" placeholder="Password" class="form-control{{ $errors->has( 'emailPassword' ) ? ' is-invalid' : '' }}" name="emailPassword" required>
 
                         @if ($errors->has( 'emailPassword' ))
                             <span class="invalid-feedback" role="alert">
@@ -174,7 +175,7 @@
                 <div class="form-group row">
                     <div class="col-lg-8 offset-lg-2">
                         <label class="text-muted" for="password" class="">Password</label>
-                        <input id="password" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
+                        <input id="clearPassword" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="clearPassword" required>
 
                         @if ($errors->has( 'password' ))
                             <span class="invalid-feedback" role="alert">
@@ -209,7 +210,7 @@
                     <div class="col-lg-8 offset-lg-2">
                         <p></p>
                         <label class="text-muted" for="password" class="">Password</label>
-                        <input id="password" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="password" required>
+                        <input id="deletePassword" type="password" placeholder="Password" class="form-control{{ $errors->has( 'password' ) ? ' is-invalid' : '' }}" name="deletePassword" required>
 
                         @if ($errors->has( 'password' ))
                             <span class="invalid-feedback" role="alert">

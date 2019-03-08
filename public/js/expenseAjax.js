@@ -1,3 +1,5 @@
+'use strict';
+
 $.ajaxSetup(
 {
     headers:
@@ -52,7 +54,6 @@ $( '.addExpense' ).on( 'submit', function( e )
         success: function( data )
         {
             console.log( data );
-            console.log( data.expenseView );
             expenseView = data.expenseView;
             $( 'div.flash-message' ).html( data.message ).fadeIn( 400 );
             $( '.table tbody' ).append( expenseView );

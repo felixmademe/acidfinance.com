@@ -10,24 +10,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class EmailVerificationWithCode extends Mailable
+class EmailVerified extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $user;
-    public $code;
-    public $email;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct( User $user, $code, $email )
+    public function __construct( User $user )
     {
         $this->user  = $user;
-        $this->code  = $code;
-        $this->email = $email;
     }
 
     /**
@@ -40,7 +36,7 @@ class EmailVerificationWithCode extends Mailable
     {
         return $this->from( 'no-reply@felixmade.me', 'Acid Finance' )
                 ->replyTo( 'no-reply@felixmade.me' )
-                ->subject( 'Email Verification' )
-                ->view( 'mail.email.verify' );
+                ->subject( 'Email Verified' )
+                ->view( 'mail.email.verified' );
     }
 }

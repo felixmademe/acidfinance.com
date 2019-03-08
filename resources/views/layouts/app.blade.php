@@ -2,24 +2,21 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 
-    <!-- COMMON TAGS -->
-    <meta charset="utf-8">
     <!-- Search Engine -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=0">
     <meta name="keywords" content="Finance, Save, Money, Save Money, Calculate, Acid Finance, Acid">
     <meta name="description" content="Acid Finance helps you by visualising your incomes and expenses, cut down unnecessary costs and save money">
     <meta name="subject" content="Finance">
     <meta name="image" content="https://acidfinance.com/img/acid-logo.png">
-    <meta name="copyright"content="Acid Finance">
     <meta name="language" content="{{ str_replace('_', '-', app()->getLocale()) }}">
     <meta name="robots" content="index, follow">
     <meta name="Classification" content="Business">
-    <meta name="author" content="Felix Wetell, felix.wetell@gmail.com">
-    <meta name="designer" content="Felix Wetell">
-    <meta name="copyright" content="Felix Wetell">
-    <meta name="reply-to" content="hello@acidfinance.com">
-    <meta name="owner" content="Felix Wetell">
+    <meta name="author" content="felix made me, hello@felixmade.me">
+    <meta name="designer" content="felix made me">
+    <meta name="copyright" content="felix made me">
+    <meta name="reply-to" content="hello@felixmade.me">
+    <meta name="owner" content="felix made me">
     <meta name="url" content="http://www.acidfinance.com">
     <meta name="identifier-URL" content="http://www.acidfinance.com">
     <meta name="coverage" content="Worldwide">
@@ -27,6 +24,10 @@
     <meta name="rating" content="General">
     <meta name="revisit-after" content="7 days">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="canonical" href="{{ Request::url() }}">
+    <link rel="home" href="{{ Request::url() }}">
+    <link rel="alternate" href="{{ Request::url() }}" hreflang="x-default">
+
     <!-- Schema.org for Google -->
     <meta itemprop="name" content="Acid Finance">
     <meta itemprop="description" content="Acid Finance helps you by visualising your incomes and expenses, cut down unnecessary costs and save money">
@@ -54,6 +55,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="{{ asset( '/css/main.min.css' ) }}">
     <link rel="icon" href="{{ asset( '/img/acid-icon.ico' ) }}">
+    <script src="https://cdn.jsdelivr.net/ga-lite/latest/ga-lite.min.js" async></script>
+    <script>
+        var galite = galite || {};
+        galite.UA = 'UA-135535698-2';
+    </script>
+    <script defer src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <script defer src="{{ asset( '/js/main.js' ) }}"></script>
+    <script defer src="{{ asset( '/js/ajax.js' ) }}"></script>
+    <script defer src="{{ asset( '/js/incomeAjax.js' ) }}"></script>
+    <script defer src="{{ asset( '/js/expenseAjax.js' ) }}"></script>
+    <script defer src="{{ asset( '/js/userAjax.js' ) }}"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
@@ -124,7 +142,7 @@
     <main>
         <div class="container mt-5 py-5">
             <div class="row justify-content-center">
-                <div class="col-md-10">
+                <div class="col-md-10 col-lg-8">
                     <div class="text-center my-4">
                         <h1>@yield( 'title' )</h1>
                     </div>
@@ -166,14 +184,14 @@
                 <div class="col-md-3">
                     <h4>Contact</h4>
                     <p>
-                        hello@acidfinance.com
+                        hello@felixmade.me
                     </p>
                 </div>
             </div>
             <hr>
             <div class="text-center">
                 <small>
-                    by <a href="https://felixmade.me">Felix Wetell</a>
+                    by <a href="https://felixmade.me">felix made me</a>
                 </small>
                 <br>
                 <small>
@@ -182,18 +200,5 @@
             </div>
         </div>
     </footer>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
-    <script src="{{ asset( '/js/main.js' ) }}"></script>
-    <script src="{{ asset( '/js/ajax.js' ) }}"></script>
-    <script src="{{ asset( '/js/incomeAjax.js' ) }}"></script>
-    <script src="{{ asset( '/js/expenseAjax.js' ) }}"></script>
-    <script src="{{ asset( '/js/userAjax.js' ) }}"></script>
 </body>
 </html>

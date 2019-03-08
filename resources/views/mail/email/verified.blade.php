@@ -2,6 +2,6 @@
 @section( 'title', 'Email Verification' )
 @section( 'content' )
 
-    <a href="https://acidfinace.com/email/verify">Link</a>
+    <p>New email have been verified</p>
 
 @endsection

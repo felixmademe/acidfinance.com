@@ -2,6 +2,7 @@
 @section( 'title', 'Login' )
 @section( 'content' )
 
+    <div class="flash-message"></div>
     <div class="text-center">
         <a class="dark-link" href="{{ route( 'register' ) }}">
             New user? Register here

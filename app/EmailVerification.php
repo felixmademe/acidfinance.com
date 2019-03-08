@@ -38,7 +38,6 @@ class EmailVerification extends Model
 
         $emailVerificationCode->delete();
 
-        return redirect( 'profile' )
-            ->with( 'message', 'Success!' );
+        return [ 'success' => 'New email have been verified successfully!' ];
     }
 }

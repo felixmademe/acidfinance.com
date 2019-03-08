@@ -10,6 +10,8 @@ use App\EmailVerification;
 use App\Mail\PasswordChange;
 use App\Mail\EmailVerificationWithCode;
 
+
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -94,47 +96,54 @@ class User extends Authenticatable implements MustVerifyEmail
         return $transactions;
     }
 
-    public function copyLastMonthsTransactions()
+    public function copyLastMonthsTransactions( User $user )
     {
         $year = Carbon::now()->year;
         $month = Carbon::now()->subMonth()->month;
-        $user = Auth::user();
 
         if( Carbon::now()->subMonth()->isLastYear() )
         {
             $year = Carbon::now()->subMonth()->year;
         }
-        
-        $incomes = Income::whereYear(
-            'created_at', '=', $year
-        )->whereMonth(
-            'created_at', '=', $month
-        )->where( 'monthly', '1' )->get();
 
-        foreach( $incomes as $income )
+        $incomes = Income::whereYear( 'created_at', $year )
+            ->whereMonth( 'created_at', $month )
+            ->where( 'monthly', '1' )
+            ->where( 'user_id', $user->id )
+            ->get();
+
+        $expenses = Expense::whereYear( 'created_at', $year )
+            ->whereMonth( 'created_at', $month )
+            ->where( 'monthly', '1' )
+            ->where( 'user_id', $user->id )
+            ->get();
+
+        if( $incomes->isNotEmpty() )
         {
-            $temp = new Income;
-            $temp->name        = $income->name;
-            $temp->amount      = $income->amount;
-            $temp->monthly     = $income->monthly;
-            $temp->user_id     = $income->user_id;
-            $temp->category_id = $income->category_id;
+            foreach( $incomes as $income )
+            {
+                $temp = new Income;
+                $temp->name        = $income->name;
+                $temp->amount      = $income->amount;
+                $temp->monthly     = $income->monthly;
+                $temp->user_id     = $income->user_id;
+                $temp->category_id = $income->category_id;
+                $temp->save();
+            }
         }
 
-        $expenses = Expense::whereYear(
-            'created_at', '=', $year
-        )->whereMonth(
-            'created_at', '=', $month
-        )->where( 'monthly', '1' )->get();
-
-        foreach( $expenses as $expense )
+        if( $expenses->isNotEmpty() )
         {
-            $temp = new Expense;
-            $temp->name        = $expense->name;
-            $temp->amount      = $expense->amount;
-            $temp->monthly     = $expense->monthly;
-            $temp->user_id     = $expense->user_id;
-            $temp->category_id = $expense->category_id;
+            foreach( $expenses as $expense )
+            {
+                $temp = new Expense;
+                $temp->name        = $expense->name;
+                $temp->amount      = $expense->amount;
+                $temp->monthly     = $expense->monthly;
+                $temp->user_id     = $expense->user_id;
+                $temp->category_id = $expense->category_id;
+                $temp->save();
+            }
         }
     }
 
@@ -146,17 +155,20 @@ class User extends Authenticatable implements MustVerifyEmail
         $user->username = $request->username;
         $user->save();
 
-        return [ 'success' => 'Username have successfully been changed.' ];
+        return [ 'success' => 'Username have successfully been changed.',
+            'result' => $user->username ];
     }
 
     public static function updateEmail( Request $request, User $user )
     {
         $request->validate( [
-            'email'    => 'required|string|email|unique:users,email|max:255',
-            'password' => 'required',
+            'email'         => 'required|string|email|unique:users,email|max:255',
+            'emailPassword' => 'required',
         ] );
-
-        // skapa en email verification row och skicka mailet för verification.
+        if( !Hash::check( $request->emailPassword, $user->password ) )
+        {
+            return [ 'error' => 'Password is incorrect, please try again.' ];
+        }
 
         $email = $request->email;
         $code  = EmailVerification::createCode();
@@ -170,7 +182,8 @@ class User extends Authenticatable implements MustVerifyEmail
         Mail::to( $request->email )
             ->send( new EmailVerificationWithCode( $user, $code, $email ) );
 
-        return [ 'success' => 'New email have been registered and verification mail have been sent.' ];
+        return [ 'success' => 'New email have been registered and verification mail have been sent.',
+            'result' => $request->email ];
     }
 
     public static function updatePassword( Request $request, User $user )
@@ -194,13 +207,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function clearHistory( Request $request, User $user )
     {
         $request->validate( [
-            'password' => 'required|string'
+            'clearPassword' => 'required|string'
         ] );
-        if( Hash::check( $request->password, $user->password ) )
+        $password = $request->clearPassword;
+
+        if( Hash::check( $password, $user->password ) )
         {
             Income::where( 'user_id', $user->id )->delete();
             Expense::where( 'user_id', $user->id )->delete();
             return [ 'success' => 'History has been cleared.' ];
         }
+        return [ 'error' => 'History could not be cleared.' ];
     }
 }

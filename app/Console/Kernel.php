@@ -29,11 +29,11 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call( function()
         {
-            $users = User::get();
+            $users = User::all();
 
             foreach( $users as $user )
             {
-                $user->copyLastMonthsTransactions();
+                $user->copyLastMonthsTransactions( $user );
             }
 
         } )->monthly( 1, '00:00' )->timezone( 'Europe/Stockholm' );

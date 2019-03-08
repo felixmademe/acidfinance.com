@@ -30,8 +30,8 @@ class PasswordChange extends Mailable
      */
     public function build()
     {
-        return $this->from( 'no-reply@acidfinance.com', 'Acid Finance' )
-                ->replyTo( 'no-reply@acidfinance.com' )
+        return $this->from( 'no-reply@felixmade.me', 'Acid Finance' )
+                ->replyTo( 'no-reply@felixmade.me' )
                 ->subject( 'Password Change' )
                 ->view( 'mail.password.change' );
     }

@@ -1,3 +1,5 @@
+'use strict';
+
 $.ajaxSetup(
 {
     headers:

@@ -134,7 +134,7 @@ class IncomeController extends Controller
         if( Auth::user()->id == $income->user_id )
         {
             $income->delete();
-            Session::flash( 'success', "$income->name removed" );
+            Session::flash( 'success', "$income->name has been removed" );
             return View::make( 'partials/flash-messages' );
         }
         else

@@ -1,3 +1,5 @@
+'use strict';
+
 $.ajaxSetup(
 {
     headers:
@@ -14,6 +16,7 @@ $( '.income-form' ).on( 'submit', function( e )
     var form = $( this );
     var id = form.children( "input[name='id']" ).val();
     var row = form.parent().parent();
+
     let ajax = $.ajax(
     {
         type: 'DELETE',
@@ -22,7 +25,7 @@ $( '.income-form' ).on( 'submit', function( e )
         {
             id: id,
         },
-        dataType: 'html',
+        dataType: 'hmtl',
         success: function( data )
         {
             $( 'div.flash-message' ).html( data ).fadeIn(400);
@@ -50,7 +53,6 @@ $( '.addIncome' ).on( 'submit', function( e )
         success: function( data )
         {
             console.log( data );
-            console.log( data.incomeView );
             incomeView = data.incomeView;
             $( 'div.flash-message' ).html( data.message ).fadeIn( 400 );
             $( '.table tbody' ).append( incomeView );
