@@ -5,7 +5,7 @@
         <style>
             @font-face
             {
-                font-family: 'Comfortaa', 'Raleway', sans-serif
+                font-family: 'Comfortaa', 'Raleway', sans-serif !important;
                 src: url('https://fonts.googleapis.com/css?family=Comfortaa|Raleway');
             }
 

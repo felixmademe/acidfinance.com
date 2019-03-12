@@ -59,7 +59,7 @@
 
         <div class="form-group row mb-0">
             <div class="col-lg-8 offset-lg-2">
-                <p>By registering you accept the <a href="{{ route( 'privacy' ) }}">privacy policy</a></p>
+                <p>By registering you accept the <a href="{{ route( 'privacy' ) }}">privacy policy</a>.</p>
                 <button type="submit" class="btn btn-primary ml-0">
                     {{ __('Register') }}
                 </button>
