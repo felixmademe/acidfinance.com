@@ -5,10 +5,10 @@
     <p>
         You have just changed your password.
         <br>
-        If you did not change your passwoprd please contact the support
+        If you did not change your passwoprd please contact the our support
         immediately for help to recover your account.
     </p>
 
-    <p>Contact: <a href="mailto:hello@acidfinance.com">hello@acidfinance.com</a></p>
+    <p>Contact: <a href="mailto:hello@felixmade.me">hello@felixmade.me</a></p>
 
 @endsection
