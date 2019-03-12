@@ -1,6 +1,6 @@
 @extends( 'layouts.app' )
 @section( 'content' )
-@section( 'title', 'Simplifying and visualising finance' )
+@section( 'title', 'Acid Finance' )
 
     <br>
     <div class="jumbotron">
