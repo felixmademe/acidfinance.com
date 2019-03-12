@@ -98,21 +98,29 @@ class UserController extends Controller
 
             default:
                 $result = [ 'error' => 'Method not allowed.'];
+                abort( 405 );
                 break;
         }
 
-        if ( !isset( $result[ 'success' ] ) )
+        if( isset( $result[ 'success' ] ) )
         {
-            return back()->with( 'error', 'Method not allowed.' );
+            Session::flash( 'success', $result[ 'success' ] );
+            $message = View::make( 'partials/flash-messages' );
+            return response()->json(
+            [
+                'message' => $message->render(),
+                'result' => $result[ 'result' ],
+            ], 200 );
         }
 
-        Session::flash( 'success' );
+        Session::flash( 'error', $result[ 'error' ] );
         $message = View::make( 'partials/flash-messages' );
         return response()->json(
         [
             'message' => $message->render(),
             'result' => $result[ 'result' ],
-        ], 200 );
+        ], 400 );
+
     }
 
     /**

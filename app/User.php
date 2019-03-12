@@ -147,16 +147,20 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
-    public static function updateUsername( Request $request, $user )
+    public static function updateUsername( Request $request, User $user )
     {
         $request->validate( [
-            'username' => 'string|max:255',
+            'username' => 'string|min:1,max:255',
         ] );
+
         $user->username = $request->username;
         $user->save();
 
-        return [ 'success' => 'Username have successfully been changed.',
-            'result' => $user->username ];
+        return
+        [
+            'success' => 'Username have successfully been changed.',
+            'result' => $user->username,
+        ];
     }
 
     public static function updateEmail( Request $request, User $user )
@@ -165,6 +169,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'email'         => 'required|string|email|unique:users,email|max:255',
             'emailPassword' => 'required',
         ] );
+
         if( !Hash::check( $request->emailPassword, $user->password ) )
         {
             return [ 'error' => 'Password is incorrect, please try again.' ];
@@ -179,11 +184,13 @@ class User extends Authenticatable implements MustVerifyEmail
         $emailVerification->timestamps = false;
         $emailVerification->save();
 
-        Mail::to( $request->email )
+        Mail::to( $email )
             ->send( new EmailVerificationWithCode( $user, $code, $email ) );
 
-        return [ 'success' => 'New email have been registered and verification mail have been sent.',
-            'result' => $request->email ];
+        return [
+            'success' => 'Verification mail have been sent to the new email.',
+            'result' => $email,
+        ];
     }
 
     public static function updatePassword( Request $request, User $user )

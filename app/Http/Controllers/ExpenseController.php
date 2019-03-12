@@ -55,13 +55,13 @@ class ExpenseController extends Controller
 
         Session::flash( 'success', "Expense added" );
         $message = View::make( 'partials/flash-messages' );
-        $expenseView = View::make( 'partials/expense-row' )
+        $view = View::make( 'partials/expense-row' )
             ->with( 'expense', $expense );
 
         return response()->json(
         [
             'message' => $message->render(),
-            'expenseView' => $expenseView->render(),
+            'view' => $view->render(),
         ], 200 );
     }
 
@@ -135,12 +135,16 @@ class ExpenseController extends Controller
         if( Auth::user()->id == $expense->user_id )
         {
             $expense->delete();
-            Session::flash( 'success', "$expense->name removed" );
-            return View::make( 'partials/flash-messages' );
+            Session::flash( 'success', "$expense->name has been removed" );
+            $message = View::make( 'partials/flash-messages' );
+            return response()->json(
+            [
+                'message' => $message->render(),
+            ], 200 );
         }
         else
         {
-            Session::flash( 'error', "$expense->name is not owned current user" );
+            Session::flash( 'error', "$expense->name is not owned by current user" );
             return View::make( 'partials/flash-messages' );
         }
 

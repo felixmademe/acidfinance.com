@@ -55,13 +55,13 @@ class IncomeController extends Controller
 
         Session::flash( 'success', "Income added" );
         $message = View::make( 'partials/flash-messages' );
-        $incomeView = View::make( 'partials/income-row' )
+        $view = View::make( 'partials/income-row' )
             ->with( 'income', $income );
 
         return response()->json(
         [
             'message' => $message->render(),
-            'incomeView' => $incomeView->render(),
+            'view' => $view->render(),
         ], 200 );
     }
 
@@ -135,11 +135,15 @@ class IncomeController extends Controller
         {
             $income->delete();
             Session::flash( 'success', "$income->name has been removed" );
-            return View::make( 'partials/flash-messages' );
+            $message = View::make( 'partials/flash-messages' );
+            return response()->json(
+            [
+                'message' => $message->render(),
+            ], 200 );
         }
         else
         {
-            Session::flash( 'error', "$income->name is not owned current user" );
+            Session::flash( 'error', "$income->name is not owned by current user" );
             return View::make( 'partials/flash-messages' );
         }
 

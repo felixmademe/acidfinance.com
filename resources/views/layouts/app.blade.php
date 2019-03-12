@@ -4,7 +4,7 @@
 
     <!-- Search Engine -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="Finance, Save, Money, Save Money, Calculate, Acid Finance, Acid">
     <meta name="description" content="Acid Finance helps you by visualising your incomes and expenses, cut down unnecessary costs and save money">
     <meta name="subject" content="Finance">

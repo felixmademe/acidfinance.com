@@ -16,6 +16,7 @@ $( '.expense-form' ).on( 'submit', function( e )
     var form = $(this);
     var id = form.children( "input[name='id']" ).val();
     var row = form.parent().parent();
+
     let ajax = $.ajax(
     {
         type: 'DELETE',
@@ -24,17 +25,17 @@ $( '.expense-form' ).on( 'submit', function( e )
         {
             id: id,
         },
-        dataType: 'html',
+        dataType: 'json',
+        async: true,
         success: function( data )
         {
-            console.log( data );
-            $( 'div.flash-message' ).html( data ).fadeIn( 400 );
+            $( 'div.flash-message' ).html( data.message ).fadeIn( 400 );
+            row.fadeOut();
             row.remove();
         },
         error: function( data )
         {
-            console.log(data);
-            $( 'div.flash-message' ).html( data ).fadeIn( 400 );
+            $( 'div.flash-message' ).html( data.message ).fadeIn( 400 );
         },
     } );
 } );
@@ -48,15 +49,14 @@ $( '.addExpense' ).on( 'submit', function( e )
     let ajax = $.ajax(
     {
         type: 'POST',
-        async: false,
+        async: true,
         url: '/expense',
         dataType: 'json',
         success: function( data )
         {
-            console.log( data );
-            expenseView = data.expenseView;
+            var row = data.view;
             $( 'div.flash-message' ).html( data.message ).fadeIn( 400 );
-            $( '.table tbody' ).append( expenseView );
+            $( '.table tbody' ).append( row );
         },
         error: function( data )
         {

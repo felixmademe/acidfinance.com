@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\MonthlyTransactions::class,
     ];
 
     /**
@@ -27,16 +27,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call( function()
-        {
-            $users = User::all();
-
-            foreach( $users as $user )
-            {
-                $user->copyLastMonthsTransactions( $user );
-            }
-
-        } )->monthly( 1, '00:00' )->timezone( 'Europe/Stockholm' );
+        $schedule->command( 'monthly:transactions' )
+            ->monthly( 1, '00:00' )
+            ->timezone( 'Europe/Stockholm' );
     }
 
     /**
@@ -46,8 +39,8 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load( __DIR__.'/Commands' );
 
-        require base_path('routes/console.php');
+        require base_path( 'routes/console.php' );
     }
 }

@@ -4,6 +4,12 @@
 @auth
 
     {{-- TODO: add previous months --}}
+    @if( $transactionsByYearMonth->isEmpty() )
+        <div class="text-center">
+            <p>No previous transactions recorded.</p>
+            <p>Click on the button below to start.</p>
+        </div>
+    @endif
     @foreach( $transactionsByYearMonth as $year => $months )
         <h2>{{ $year }}</h2>
         <ul class="list-group list-group-flush">

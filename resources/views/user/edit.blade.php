@@ -34,7 +34,7 @@
                 <div class="form-group row">
                     <div class="col-lg-8 offset-lg-2">
                         <label class="text-muted" for="username" class="">Username</label>
-                        <input id="username" type="text" placeholder="Username" class="form-control{{ $errors->has( 'username' ) ? ' is-invalid' : '' }}" name="username" value="{{ Auth::user()->username }}" autofocus>
+                        <input id="username" type="text" placeholder="Username" class="form-control{{ $errors->has( 'username' ) ? ' is-invalid' : '' }}" name="username" value="{{ Auth::user()->username }}" autofocus required>
 
                         @if( $errors->has( 'username' ) )
                             <span class="invalid-feedback" role="alert">
@@ -63,6 +63,7 @@
             <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="changeEmail">
                 @csrf
                 {{ method_field( 'patch' ) }}
+                <input type="hidden" name="id" value="{{ Auth::user()->id }}">
                 <input type="hidden" name="type" value="email">
 
                 <div class="form-group row">
@@ -112,6 +113,7 @@
             <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="changePassword">
                 @csrf
                 {{ method_field( 'patch' ) }}
+                <input type="hidden" name="id" value="{{ Auth::user()->id }}">
                 <input type="hidden" name="type" value="password">
 
                 <div class="form-group row">

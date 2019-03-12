@@ -25,15 +25,17 @@ $( '.income-form' ).on( 'submit', function( e )
         {
             id: id,
         },
-        dataType: 'hmtl',
+        dataType: 'json',
+        async: true,
         success: function( data )
         {
-            $( 'div.flash-message' ).html( data ).fadeIn(400);
+            $( 'div.flash-message' ).html( data.message ).fadeIn(400);
+            row.fadeOut();
             row.remove();
         },
         error: function( data )
         {
-            $( 'div.flash-message' ).html( data ).fadeIn(400);
+            $( 'div.flash-message' ).html( data.message ).fadeIn(400);
         },
     } );
 } );
@@ -47,15 +49,14 @@ $( '.addIncome' ).on( 'submit', function( e )
     let ajax = $.ajax(
     {
         type: 'POST',
-        async: false,
+        async: true,
         url: '/income',
         dataType: 'json',
         success: function( data )
         {
-            console.log( data );
-            incomeView = data.incomeView;
+            var row = data.view;
             $( 'div.flash-message' ).html( data.message ).fadeIn( 400 );
-            $( '.table tbody' ).append( incomeView );
+            $( '.table tbody' ).append( row );
         },
         error: function( data )
         {
