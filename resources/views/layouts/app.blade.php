@@ -72,6 +72,23 @@
     <script defer src="{{ asset( '/js/incomeAjax.js' ) }}"></script>
     <script defer src="{{ asset( '/js/expenseAjax.js' ) }}"></script>
     <script defer src="{{ asset( '/js/userAjax.js' ) }}"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+    <script>
+    window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#000"
+        },
+        "button": {
+          "background": "#fff",
+          "color": "#000 !important"
+        }
+      }
+    })});
+    </script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
