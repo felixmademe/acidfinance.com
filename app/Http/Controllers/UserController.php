@@ -109,7 +109,7 @@ class UserController extends Controller
             return response()->json(
             [
                 'message' => $message->render(),
-                'result' => $result[ 'result' ],
+                'result' => $result,
             ], 200 );
         }
 
@@ -118,7 +118,7 @@ class UserController extends Controller
         return response()->json(
         [
             'message' => $message->render(),
-            'result' => $result[ 'result' ],
+            'result' => $result,
         ], 400 );
 
     }

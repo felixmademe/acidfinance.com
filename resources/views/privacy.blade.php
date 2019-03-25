@@ -122,7 +122,7 @@
     <h2>Contact Us</h2>
     <p>If you have any questions about this Privacy Policy, please contact us:</p>
     <ul>
-            <li>By email: hello@acidfinance.com</li>
+            <li>By email: hello@felixmade.me</li>
 
             </ul>
 
