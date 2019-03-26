@@ -97,7 +97,7 @@ class UserController extends Controller
                 break;
 
             default:
-                $result = [ 'error' => 'Method not allowed.'];
+                $result = [ 'error' => 'Method not allowed.' ];
                 abort( 405 );
                 break;
         }
@@ -109,7 +109,7 @@ class UserController extends Controller
             return response()->json(
             [
                 'message' => $message->render(),
-                'result' => $result,
+                'result' => $result[ 'success' ],
             ], 200 );
         }
 
@@ -118,7 +118,7 @@ class UserController extends Controller
         return response()->json(
         [
             'message' => $message->render(),
-            'result' => $result,
+            'result' => $result[ 'error' ],
         ], 400 );
 
     }

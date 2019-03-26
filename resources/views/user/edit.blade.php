@@ -172,6 +172,7 @@
             <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="clearHistory">
                 @csrf
                 {{ method_field( 'patch' ) }}
+                <input type="hidden" name="id" value="{{ Auth::user()->id }}">
                 <input type="hidden" name="type" value="clearHistory">
 
                 <div class="form-group row">
