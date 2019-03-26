@@ -3,7 +3,7 @@
     <td>{{ $expense->name }}</td>
     <td>{{ $expense->category->name ?? 'None' }}</td>
     <td>{{ $expense->monthly == 1 ? 'Yes' : 'No' }}</td>
-    <td class="green-text">{{ $expense->amount }}kr</td>
+    <td class="red-text">{{ $expense->amount }}kr</td>
     <td class="">
         <a href="{{ url( 'expense/' . $expense->id . '/edit') }}" class="blue-text">Edit </a>
          /

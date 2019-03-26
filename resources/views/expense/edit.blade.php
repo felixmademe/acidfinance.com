@@ -1,5 +1,5 @@
 @extends( 'layouts.app' )
-@section( 'title', 'expense' )
+@section( 'title', 'Expense' )
 @section( 'content' )
 
     <h4 class="text-center">{{ $expense->name }}</h4>
