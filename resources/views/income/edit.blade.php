@@ -3,14 +3,14 @@
 @section( 'content' )
 
     <h4 class="text-center">{{ $income->name }}</h4>
-    <form method="POST" action="{{ route( 'income.update.{id}', [ 'id' => $income->id ] ) }}">
+    <form method="POST" action="{{ url( 'income/' . $income->id ) }}">
         @csrf
-        <input name="_method" type="hidden" value="PUT">
+        {{ method_field( 'patch' ) }}
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
-                <label for="name" class="col-form-label text-md-right">Name</label>
+                <label for="name" class="text-muted">Name</label>
                 <input id="name" type="text" placeholder="Name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $income->name }}" autofocus>
                 @if ($errors->has('name'))
                     <span class="invalid-feedback" role="alert">
@@ -22,8 +22,7 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
-                <label for="category" class="col-form-label text-md-right">Category</label>
-                {{-- <input id="category_id" type="text" placeholder="Category" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" name="category_id" value="{{ $expense->category_id }}"> --}}
+                <label for="category" class="text-muted">Category</label>
                 <select class="form-control" id="category_id" name="category_id">
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}" {{ old( 'category_id', $income->category_id ) == $category->id ? 'selected' : '' }}>
@@ -41,7 +40,7 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
-                <label for="monthly" class="col-form-label text-md-right">Monthly</label>
+                <label for="monthly" class="text-muted">Monthly</label>
                 <select class="form-control" id="monthly" name="monthly">
                     <option value="1" {{ old( 'monthly', $income->monthly ) == 1 ? 'selected' : '' }}>Yes</option>
                     <option value="0" {{ old( 'monthly', $income->monthly ) == 0 ? 'selected' : '' }}>No</option>
@@ -56,7 +55,7 @@
 
         <div class="form-group row">
             <div class="col-lg-8 offset-lg-2">
-                <label for="amount" class="col-form-label text-md-right">Amount (kr)</label>
+                <label for="amount" class="text-muted">Amount (kr)</label>
                 <input id="amount" type="text" placeholder="Amount" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" value="{{ $income->amount }}">
                 @if ($errors->has('amount'))
                     <span class="invalid-feedback" role="alert">
@@ -68,7 +67,7 @@
 
         <div class="form-group row mb-0">
             <div class="col-lg-8 offset-lg-2">
-                <a class="btn btn-blue" href="{{ route( 'income.index' ) }}">Cancel</a>
+                <a class="btn btn-blue" href="{{ url( '/income' ) }}">Cancel</a>
                 <button type="submit" class="btn btn-primary ml-0">
                     {{ __('Save') }}
                 </button>

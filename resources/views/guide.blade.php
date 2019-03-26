@@ -16,10 +16,10 @@
             or
             <a href="{{ route( 'expense.index' ) }}"> Expense</a></li>
         <li>Add an Income or Expense</li>
-        <li>Click Edit on the new Income/Expense</li>
+        <li>Click "Edit" on the new Income or Expense</li>
         <li>Enter the necessary info</li>
         <li>Let the web app crunch the numbers</li>
-        <li>Voila, the result should be displayed on the <a href="{{ url( '/' ) }}">startpage</a></li>
+        <li>Voila, the result should be displayed on the <a href="{{ route( 'dashboard' ) }}">dashboard</a></li>
     </ol>
 
 @endsection

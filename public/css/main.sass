@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Raleway')
+
 //
 // Variables
 //
@@ -11,12 +13,12 @@ $white: #FFF !important
 //
 // Universal elements
 //
-
 *
+    font-family: 'Comfortaa', 'Raleway', sans-serif
+    font-weight: lighter
     transition-duration: 0.4s
     &:hover
         transition-duration: 0.4s
-
 
 h1, h2, h3
     color: $primary
@@ -33,10 +35,6 @@ p
 small
     color: $text-primary
     opacity: 0.7
-
-button
-    &[type="submit"]
-        background-color: $primary
 
 input
     &:focus
@@ -71,6 +69,10 @@ input
     border: none !important
     -webkit-appearance: none !important
 
+.btn-primary
+    &[type="submit"]
+        background-color: $primary
+
 .btn-orange
     background-color: $secondary
 
@@ -83,6 +85,15 @@ input
         outline: 0
         -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 200, 81, 0.6)
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 200, 81, 0.6)
+
+.w-15
+    width: 15% !important
+
+.w-20
+    width: 20% !important
+
+.w-40
+    width: 40% !important
 
 .flex-row
     display: table
@@ -105,7 +116,7 @@ input
     background-color: $white
     .navbar-brand
         img
-            width: 45px
+            width: 50px
             &:hover
                 filter: blur(1px)
 
@@ -114,6 +125,23 @@ input
             color: $text-primary
 
 .footer
+
+//
+// Index
+//
+
+.swiper-slide
+    a
+        filter: grayscale( 100% )
+        transition-duration: 0.3s
+
+        img
+            width: 100px
+
+        &:hover
+            filter: grayscale( 0% )
+            transition-duration: 0.5s
+
 
 //
 // Income/Expense

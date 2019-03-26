@@ -11,63 +11,40 @@
 |
 */
 
-Auth::routes();
+Auth::routes( [ 'verify' => true ] );
 
-Route::get( '/', function ()
+Route::get( '/', function()
 {
     return view( 'index' );
-});
+} )->name( 'index' );
 
 Route::get( 'what-is-simple-finance', function ()
 {
     return view( 'about' );
-})->name( 'about' );
+} )->name( 'about' );
 
 Route::get( 'how-to-use', function ()
 {
     return view( 'guide' );
-})->name( 'guide' );
+} )->name( 'guide' );
 
 Route::get( 'privacy-policy', function ()
 {
     return view( 'privacy' );
-})->name( 'privacy' );
+} )->name( 'privacy' );
 
-Route::get( 'previous-months', function ()
+Route::get( 'verify', 'EmailVerificationController@show' );
+
+Route::group( [ 'middleware' => 'verified' ], function ()
 {
-    return view( 'previous' );
-})->name( 'previous' );
+    Route::get( 'profile', 'UserController@edit' )->name( 'profile' );
+    Route::get( 'dashboard', 'MonthController@index' )->name( 'dashboard' );
+    Route::get( 'previous-months', 'MonthController@previous' )->name( 'previous' );
 
-Route::name( 'user.' )->group( function ()
-{
-    Route::get( 'profile', function ()
-    {
-        return view( 'user.index' );
-    })->name( 'profile' )->middleware( 'auth' );
-
-    Route::patch( 'user.edit', 'UserController@edit' )->name( 'edit' );
-});
-
-Route::name( 'income.' )->group( function ()
-{
-    Route::get( 'income', 'IncomeController@index' )->name( 'index' )->middleware( 'auth' );
-    Route::get( 'income/create', 'IncomeController@create' )->name( 'create' );
-    Route::get( 'income/edit/{id}', 'IncomeController@edit' )->name( 'edit.{id}' );
-
-    Route::post( 'income/store', 'IncomeController@store' )->name( 'store' );
-    Route::post( 'income/remove/{id}', 'IncomeController@destroy' )->name( 'remove.{id}' );
-
-    Route::put( 'income/update/{id}', 'IncomeController@update' )->name( 'update.{id}' );
-});
-
-Route::name( 'expense.' )->group( function ()
-{
-    Route::get( 'expense', 'ExpenseController@index' )->name( 'index' )->middleware( 'auth' );
-    Route::get( 'expense/create', 'ExpenseController@create' )->name( 'create' );
-    Route::get( 'expense/edit/{id}', 'ExpenseController@edit' )->name( 'edit.{id}' );
-
-    Route::post( 'expense/store', 'ExpenseController@store' )->name( 'store' );
-    Route::post( 'expense/remove/{id}', 'ExpenseController@destroy' )->name( 'remove.{id}' );
-
-    Route::put( 'expense/update/{id}', 'ExpenseController@update' )->name( 'update.{id}' );
-});
+    Route::resources( [
+        'user' => 'UserController',
+        'income' => 'IncomeController',
+        'expense' => 'ExpenseController',
+        'emailverification' => 'EmailVerificationController'
+    ] );
+} );

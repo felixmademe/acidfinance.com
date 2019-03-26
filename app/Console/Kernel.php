@@ -2,6 +2,9 @@
 
 namespace App\Console;
 
+use App\User;
+use App\Income;
+use App\Expense;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +16,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\MonthlyTransactions::class,
     ];
 
     /**
@@ -24,8 +27,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command( 'monthly:transactions' )
+            ->monthly( 1, '00:00' )
+            ->timezone( 'Europe/Stockholm' );
     }
 
     /**
@@ -35,8 +39,8 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load( __DIR__.'/Commands' );
 
-        require base_path('routes/console.php');
+        require base_path( 'routes/console.php' );
     }
 }

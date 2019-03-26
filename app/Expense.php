@@ -3,7 +3,7 @@
 namespace App;
 
 use App\User;
-use App\Category;
+use App\ExpenseCategory;
 use Illuminate\Database\Eloquent\Model;
 
 class Expense extends Model

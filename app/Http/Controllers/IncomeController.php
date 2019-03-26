@@ -20,8 +20,11 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        $incomes = Auth::user()->incomes;
-        return view( 'income.index' )->with( 'incomes', $incomes );
+        $incomes = Auth::user()
+            ->currentYearMonth( 'incomes' );
+
+        return view( 'income.index' )
+            ->with( 'incomes', $incomes );
     }
 
     /**
@@ -31,7 +34,7 @@ class IncomeController extends Controller
      */
     public function create()
     {
-        //
+        abort( 404 );
     }
 
     /**
@@ -52,16 +55,14 @@ class IncomeController extends Controller
 
         Session::flash( 'success', "Income added" );
         $message = View::make( 'partials/flash-messages' );
-        $incomeView = View::make( 'partials/income-row' )->with( 'income', $income );
+        $view = View::make( 'partials/income-row' )
+            ->with( 'income', $income );
 
         return response()->json(
         [
             'message' => $message->render(),
-            'incomeView' => $incomeView->render(),
+            'view' => $view->render(),
         ], 200 );
-
-        // return $reult = [ View::make( 'partials/flash-messages' ), $income];
-
     }
 
     /**
@@ -86,8 +87,8 @@ class IncomeController extends Controller
         $income = Income::find( $id );
 
         return view( 'income.edit' )
-               ->with( 'income', $income  )
-               ->with( 'categories', IncomeCategory::get() );;
+            ->with( 'income', $income  )
+            ->with( 'categories', IncomeCategory::get() );;
     }
 
     /**
@@ -116,7 +117,8 @@ class IncomeController extends Controller
             $income->amount = $request->amount;
             $income->save();
 
-            return redirect( 'income' )->with( 'success', [ $income->name, 'have been updated!' ]  );
+            return redirect( 'income' )
+                ->with( 'success', [ $income->name, 'have been updated!' ]  );
         }
     }
 
@@ -132,12 +134,16 @@ class IncomeController extends Controller
         if( Auth::user()->id == $income->user_id )
         {
             $income->delete();
-            Session::flash( 'success', "$income->name removed" );
-            return View::make( 'partials/flash-messages' );
+            Session::flash( 'success', "$income->name has been removed" );
+            $message = View::make( 'partials/flash-messages' );
+            return response()->json(
+            [
+                'message' => $message->render(),
+            ], 200 );
         }
         else
         {
-            Session::flash( 'error', "$income->name is not owned current user" );
+            Session::flash( 'error', "$income->name is not owned by current user" );
             return View::make( 'partials/flash-messages' );
         }
 

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use View;
+use Session;
+
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view( 'user.index' );
     }
 
     /**
@@ -60,20 +63,7 @@ class UserController extends Controller
      */
     public function edit( Request $request )
     {
-        $request->validate([
-            'username' => 'string|max:255',
-            'email'    => 'required|email|unique|max:255',
-            'password' => 'required|confirmed|min:6'
-        ]);
-
-        $user = Auth::user();
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->password = Hash::make( $request->password );
-
-        $user->save();
-
-        return redirect()->back();
+        return view( 'user.edit' );
     }
 
     /**
@@ -83,9 +73,54 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( Request $request, $id )
     {
-        //
+        $user = User::find( $id );
+        $this->authorize( 'update', Auth::user(), $user );
+
+        switch ( $request->type )
+        {
+            case 'username':
+                $result = User::updateUsername( $request, $user );
+                break;
+
+            case 'email':
+                $result = User::updateEmail( $request, $user );
+                break;
+
+            case 'password':
+                $result = User::updatePassword( $request, $user );
+                break;
+
+            case 'clearHistory':
+                $result = User::clearHistory( $request, $user );
+                break;
+
+            default:
+                $result = [ 'error' => 'Method not allowed.' ];
+                abort( 405 );
+                break;
+        }
+
+        if( isset( $result[ 'success' ] ) )
+        {
+            Session::flash( 'success', $result[ 'success' ] );
+            $message = View::make( 'partials/flash-messages' );
+            return response()->json(
+            [
+                'message' => $message->render(),
+                'result' => $result[ 'success' ],
+            ], 200 );
+        }
+
+        Session::flash( 'error', $result[ 'error' ] );
+        $message = View::make( 'partials/flash-messages' );
+        return response()->json(
+        [
+            'message' => $message->render(),
+            'result' => $result[ 'error' ],
+        ], 400 );
+
     }
 
     /**
@@ -94,8 +129,29 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( Request $request, $id )
     {
-        //
+        $user = Auth::user();
+        $this->authorize( 'delete', Auth::user(), $user );
+
+        $request->validate( [
+            'deletePassword' => 'required|string'
+        ] );
+        $password = $request->deletePassword;
+
+        if( Hash::check( $password, $user->password ) )
+        {
+            User::clearHistory( $request, $user );
+            $user->delete();
+            Auth::logout();
+            Auth::logoutOtherDevices( $password );
+
+            Session::flash( 'success' );
+            $message = View::make( 'partials/flash-messages' );
+            return response()->json(
+            [
+                'message' => $message->render(),
+            ], 200 );
+        }
     }
 }
