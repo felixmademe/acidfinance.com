@@ -13,10 +13,10 @@ $( '#changeUsername' ).on( 'submit', function( e )
     e.preventDefault();
     e.stopPropagation();
 
-    var form     = $( this );
-    var id       = form.children( "input[name=id]" ).val();
-    var type     = form.children( "input[name=type]" ).val();
-    var username = form.find( "input[name=username]" ).val();
+    let form     = $( this );
+    let id       = form.children( "input[name=id]" ).val();
+    let type     = form.children( "input[name=type]" ).val();
+    let username = form.find( "input[name=username]" ).val();
 
     let ajax = $.ajax(
     {
@@ -49,11 +49,11 @@ $( '#changeEmail' ).on( 'submit', function( e )
     e.preventDefault();
     e.stopPropagation();
 
-    var form          = $( this );
-    var id            = form.children( "input[name=id]" ).val();
-    var type          = form.children( "input[name=type]" ).val();
-    var email         = form.find( "input[name=email]" ).val();
-    var emailPassword = form.find( "input[name=emailPassword]" ).val();
+    let form          = $( this );
+    let id            = form.children( "input[name=id]" ).val();
+    let type          = form.children( "input[name=type]" ).val();
+    let email         = form.find( "input[name=email]" ).val();
+    let emailPassword = form.find( "input[name=emailPassword]" ).val();
 
     let ajax = $.ajax(
     {
@@ -88,12 +88,12 @@ $( '#changePassword' ).on( 'submit', function( e )
     e.preventDefault();
     e.stopPropagation();
 
-    var form            = $( this );
-    var id              = form.children( "input[name=id]" ).val();
-    var type            = form.children( "input[name=type]" ).val();
-    var currentPassword = form.find( "input[name=currentPassword]" ).val();
-    var password        = form.find( "input[name=password]" ).val();
-    var confirmPassword = form.find( "input[name=confirmPassword]" ).val();
+    let form            = $( this );
+    let id              = form.children( "input[name=id]" ).val();
+    let type            = form.children( "input[name=type]" ).val();
+    let currentPassword = form.find( "input[name=currentPassword]" ).val();
+    let password        = form.find( "input[name=password]" ).val();
+    let confirmPassword = form.find( "input[name=confirmPassword]" ).val();
 
     let ajax = $.ajax( {
         type: 'PATCH',
@@ -112,9 +112,9 @@ $( '#changePassword' ).on( 'submit', function( e )
         {
             console.log( data.message );
             $( 'div.flash-message' ).html( data.message ).fadeIn( 400 );
-            currentPassword..val( '' );
-            password..val( '' );
-            confirmPassword..val( '' );
+            currentPassword.val( '' );
+            password.val( '' );
+            confirmPassword.val( '' );
         },
         error: function( data )
         {
@@ -129,10 +129,10 @@ $( '#clearHistory' ).on( 'click', function( e )
     e.preventDefault();
     e.stopPropagation();
 
-    var form     = $( this );
-    var id       = form.children( "input[name=id]" ).val();
-    var type     = form.children( "input[name=type]" ).val();
-    var password = form.find( 'input[name=clearPassword]' ).val();
+    let form     = $( this );
+    let id       = form.children( "input[name=id]" ).val();
+    let type     = form.children( "input[name=type]" ).val();
+    let password = form.find( 'input[name=clearPassword]' ).val();
 
     let ajax = $.ajax( {
         type: 'PATCH',

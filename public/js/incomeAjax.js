@@ -13,9 +13,9 @@ $( '.income-form' ).on( 'submit', function( e )
     e.preventDefault();
     e.stopPropagation();
 
-    var form = $( this );
-    var id = form.children( "input[name='id']" ).val();
-    var row = form.parent().parent();
+    let form = $( this );
+    let id = form.children( "input[name='id']" ).val();
+    let row = form.parent().parent();
 
     let ajax = $.ajax(
     {
@@ -45,7 +45,7 @@ $( '.addIncome' ).on( 'submit', function( e )
     e.preventDefault();
     e.stopPropagation();
 
-    var form = $( this );
+    let form = $( this );
     let ajax = $.ajax(
     {
         type: 'POST',
@@ -54,7 +54,7 @@ $( '.addIncome' ).on( 'submit', function( e )
         dataType: 'json',
         success: function( data )
         {
-            var row = data.view;
+            let row = data.view;
             $( 'div.flash-message' ).html( data.message ).fadeIn( 400 );
             $( '.table tbody' ).append( row );
         },
