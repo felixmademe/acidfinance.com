@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command( 'monthly:transactions' )
-            ->monthly( 1, '00:00' )
+            ->monthly( 1, '04:00' )
             ->timezone( 'Europe/Stockholm' );
     }
 
