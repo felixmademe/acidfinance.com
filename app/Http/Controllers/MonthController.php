@@ -77,7 +77,34 @@ class MonthController extends Controller
                 }
         ]);
 
+
         return view( 'previous' )
+            ->with( 'transactionsByYearMonth', $transactionsByYearMonth )
+            ->with( 'incomes', $incomes )
+            ->with( 'expenses', $expenses );
+    }
+    public function detailedPrevious()
+    {
+        $user = User::with( 'incomes', 'expenses' )->find( Auth::user()->id );
+        $incomes = $user->incomes;
+        $expenses = $user->expenses;
+
+        $transactions = collect( $incomes );
+        $mergedTransactions = $transactions->merge( $expenses );
+        $mergedTransactions->all();
+
+        $transactionsByYearMonth = $mergedTransactions->groupBy([
+            function( $date )
+                {
+                    return Carbon::parse( $date->created_at )->format( 'Y' );
+                },
+                function( $date )
+                {
+                    return Carbon::parse( $date->created_at )->format( 'F' );
+                }
+        ]);
+
+        return view( 'detailed-prev' )
             ->with( 'transactionsByYearMonth', $transactionsByYearMonth )
             ->with( 'incomes', $incomes )
             ->with( 'expenses', $expenses );

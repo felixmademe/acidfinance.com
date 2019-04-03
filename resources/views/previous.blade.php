@@ -3,62 +3,63 @@
 @section( 'content' )
 @auth
 
+
     {{-- TODO: add previous months --}}
-    @if( $transactionsByYearMonth->isEmpty() )
-        <div class="text-center">
+    <div class="text-center">
+        @if( $transactionsByYearMonth->isEmpty() )
             <p>No previous transactions recorded.</p>
             <p>Click on the button below to start.</p>
-        </div>
-    @endif
+        @else
+            <p>Click the button below if you want to see a more detailed overview of the previous months.</p>
+            <a class="btn btn-blue" href="{{ route( 'detailed-prev' ) }}">Detailed previous months</a>
+            <hr>
+        @endif
+    </div>
+
     @foreach( $transactionsByYearMonth as $year => $months )
         <h2>{{ $year }}</h2>
-        <ul class="list-group list-group-flush">
-            @foreach( $months as $month => $transactions )
-                <li class="list-group-item border-0">
-                    <h4>
-                        {{ $month }} -
-                        @php
-                            $total = Auth::user()->currentMonthTotalSum( $year, Carbon\Carbon::parse( $month )->month )
-                        @endphp
-                            @if( $total < 0 )
-                                <span class="red-text">{{ $total }}kr</span>
-                            @else
-                                <span class="green-text">{{ $total }}kr</span>
-                            @endif
-                    </h4>
-                    <table class="table table-hover col-12">
-                        <thead>
-                            <tr>
-                                <th class="th-sm">Type</th>
-                                <th class="th-sm">Name</th>
-                                <th class="th-sm">Category</th>
-                                <th class="th-sm">Monthly</th>
-                                <th class="th-sm">Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach( $transactions as $type => $transaction )
-                                <tr>
-                                    @if( get_class( $transaction ) === 'App\Income' )
-                                        <td class="w-15 green-text">Income</td>
-                                    @elseif( get_class( $transaction ) === 'App\Expense' )
-                                        <td class="w-15 red-text">Expense</td>
-                                    @endif
-                                    <td class="w-40">{{ $transaction->name }}</td>
-                                    <td class="w-15">{{ $transaction->category->name ?? 'None' }}</td>
-                                    <td class="w-15">{{ $transaction->monthly == 1 ? 'Yes' : 'No' }}</td>
-                                    @if( get_class( $transaction ) === 'App\Income' )
-                                        <td class="w-15 green-text">{{ $transaction->amount }}kr</td>
-                                    @elseif ( get_class( $transaction ) === 'App\Expense' )
-                                        <td class="w-15 red-text">-{{ $transaction->amount }}kr</td>
-                                    @endif
-                                </tr>
+        <canvas id="{{ $year }}Chart" width="80vw" height="50vh"></canvas>
+        <script>
+            var ctx = document.getElementById('{{ $year }}Chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        @foreach( $months->reverse() as $month => $transactions )
+                            '{{ $month }}',
+                        @endforeach
+                    ],
+                    datasets: [{
+                        label: 'Amount per month',
+                        data: [
+                            @foreach( $months->reverse() as $month => $transactions )
+                                {{ Auth::user()->currentMonthTotalSum( $year, Carbon\Carbon::parse( $month )->month )}},
                             @endforeach
-                        </tbody>
-                    </table>
-                </li>
-            @endforeach
-        </ul>
+                        ],
+                        backgroundColor: [
+                            @foreach( $months->reverse() as $month => $transactions )
+                                @if( Auth::user()->currentMonthTotalSum( $year, Carbon\Carbon::parse( $month )->month ) < 0 )
+                                    'rgba(244, 67, 54, 0.2)',
+                                @else
+                                    'rgba(0, 200, 81, 0.2)',
+                                @endif
+                            @endforeach
+                        ],
+                        borderColor: [
+                            @foreach( $months->reverse() as $month => $transactions )
+                                @if( Auth::user()->currentMonthTotalSum( $year, Carbon\Carbon::parse( $month )->month ) < 0 )
+                                    'rgba(244, 67, 54, 1)',
+                                @else
+                                    'rgba(0, 200, 81, 1)',
+                                @endif
+                            @endforeach
+                        ],
+                        borderWidth: 1
+                    }],
+                },
+            });
+        </script>
+        <hr>
     @endforeach
     <hr>
     <div class="text-center">

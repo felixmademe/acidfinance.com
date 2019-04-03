@@ -40,6 +40,7 @@ Route::group( [ 'middleware' => 'verified' ], function ()
     Route::get( 'profile', 'UserController@edit' )->name( 'profile' );
     Route::get( 'dashboard', 'MonthController@index' )->name( 'dashboard' );
     Route::get( 'previous-months', 'MonthController@previous' )->name( 'previous' );
+    Route::get( 'detailed-previous-months', 'MonthController@detailedPrevious' )->name( 'detailed-prev' );
 
     Route::resources( [
         'user' => 'UserController',

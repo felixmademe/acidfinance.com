@@ -66,6 +66,8 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 
     <script defer src="{{ asset( '/js/main.js' ) }}"></script>
     <script defer src="{{ asset( '/js/ajax.js' ) }}"></script>
@@ -159,7 +161,7 @@
     <main>
         <div class="container mt-5 py-5">
             <div class="row justify-content-center">
-                <div class="col-md-10 col-lg-8">
+                <div class="col-md-10">
                     <div class="text-center my-4">
                         <h1>@yield( 'title' )</h1>
                     </div>
