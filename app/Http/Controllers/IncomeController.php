@@ -88,7 +88,7 @@ class IncomeController extends Controller
 
         return view( 'income.edit' )
             ->with( 'income', $income  )
-            ->with( 'categories', IncomeCategory::get() );;
+            ->with( 'categories', IncomeCategory::get() );
     }
 
     /**
