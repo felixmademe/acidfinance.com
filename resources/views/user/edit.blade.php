@@ -169,7 +169,7 @@
                 <h4>Clear History</h4>
                 <p>Clear the history on your account</p>
             </div>
-            <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="clearHistory">
+            <form  onsubmit="return confirm('Are you sure you want to clear your account history? This action is permanent and can not be undone.');" method="post" action="{{ '/user/' . Auth::user()->id }}" id="clearHistory">
                 @csrf
                 {{ method_field( 'patch' ) }}
                 <input type="hidden" name="id" value="{{ Auth::user()->id }}">
@@ -205,7 +205,7 @@
                     <small>This action can not be reversed. Do it at your own risk!</small>
                 </p>
             </div>
-            <form method="post" action="{{ '/user/' . Auth::user()->id }}" id="deleteUser">
+            <form onsubmit="return confirm('Are you sure you want to remove your account? This action is permanent and can not be undone.');" method="post" action="{{ '/user/' . Auth::user()->id }}" id="deleteUser">
                 @csrf
                 {{ method_field( 'delete' ) }}
 
