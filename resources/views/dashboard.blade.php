@@ -42,8 +42,8 @@
             </div>
         </div>
         <div class="d-block row d-md-flex flex-md-row justify-content-center mt-4">
-            <div class="col-md-6 ">
-                <div class="card">
+            <div class="col-md-6">
+                <div class="card mb-5">
                     <img class="card-img-top" src="{{ asset( '/img/income.svg' ) }}" alt="Plus icon in cirlce on a one colour background">
                     <div class="card-body">
                         <h4 class="text-center">Income</h4>
@@ -64,12 +64,12 @@
                                 @endforeach
                             @endif
                         </ul>
-                        <a href="{{ route( 'income.index' ) }}" class="btn btn-orange">Edit</a>
+                        <a href="{{ route( 'income.index' ) }}" class="btn btn-orange">Show more</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card">
+                <div class="card mb-5">
                     <img class="card-img-top" src="{{ asset( '/img/expense.svg' ) }}" alt="Minus icon in cirlce on a one colour background">
                     <div class="card-body">
                         <h4 class="text-center">Expense</h4>
@@ -95,16 +95,17 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-4">
+        <div class="col mt-5">
+            <h3 class="text-center">Total amount</h3>
             <canvas id="dashboardChart" width="80vw" height="50vh"></canvas>
             <script defer>
-                var ctx = document.getElementById('dashboardChart').getContext('2d');
-                var myChart = new Chart(ctx, {
+                let ctx = document.getElementById('dashboardChart').getContext('2d');
+                let myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ['Total', 'Expense', 'Income'],
+                        labels: ['Total', 'Income', 'Expense'],
                         datasets: [{
-                            label: 'Amount',
+                            label: 'Amount (kr)',
                             data: [
                                 {{ Auth::user()->currentMonthTotalSum( $currentYear, $currentMonth )  }},
                                 {{ Auth::user()->currentYearMonth( 'incomes' )->sum( 'amount' )  }},
